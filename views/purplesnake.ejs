@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Play2Learn Snake Quiz Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Base styling to match Play2Learn theme */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #121212;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #e7e7e7;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background gradient effect similar to main site */
+    .grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.4;
+      z-index: -2;
+    }
+
+    .glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102, 0, 197, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+      z-index: -1;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* Header styling */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .play2 {
+      color: #ffffff;
+    }
+
+    .learn {
+      background: linear-gradient(90deg, #6600c5, #9370db);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Game canvas styling */
+    canvas {
+      background-color: #1a1a1a;
+      border: 2px solid #2a2a2a;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(147, 112, 219, 0.2);
+    }
+
+    /* Quiz modal styling */
+    #quiz-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      position: relative;
+      background-color: #121212;
+      margin: 10% auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(147, 112, 219, 0.4);
+      border: 1px solid #2a2a2a;
+      padding: 30px;
+      animation: modalOpen 0.4s ease;
+    }
+
+    @keyframes modalOpen {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      background: linear-gradient(90deg, #ffffff, #9370db);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #e7e7e7;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      padding: 12px 15px;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #e7e7e7;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .option-btn:hover {
+      background-color: #2a2a2a;
+      border-color: #6600c5;
+    }
+
+    /* Score display */
+    .score-container {
+      display: flex;
+      justify-content: space-between;
+      width: 400px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+    }
+
+    .score-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .score-label {
+      font-size: 14px;
+      color: #9370db;
+    }
+
+    .score-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    /* Game over modal */
+    #game-over-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #6600c5, #9370db);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
+      margin-top: 20px;
+      align-self: center;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* Add a start game overlay */
+    #start-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 500;
+    }
+
+    #start-screen h2 {
+      margin-bottom: 40px;
+      font-size: 36px;
+    }
+
+    .controls-info {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    .controls-info p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .score-container {
+        width: 95%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      canvas {
+        width: 95%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hidden element containing EJS data -->
+  <div id="question-data" data-questions="<%= questions %>" style="display:none;"></div>
+
+  <img class="grid" src="/images/gradient.png" alt="Background gradient" />
+  <div class="glow"></div>
+  <div class="container">
+    <header>
+      <h1 class="logo">
+        <span class="play2">Play2</span><span class="learn">learn</span>
+      </h1>
+    </header>
+
+    <canvas width="400" height="400" id="game"></canvas>
+    
+    <div class="score-container">
+      <div class="score-item">
+        <span class="score-label">SCORE</span>
+        <span class="score-value" id="score">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">QUESTIONS ANSWERED</span>
+        <span class="score-value" id="questions-answered">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">HIGH SCORE</span>
+        <span class="score-value" id="high-score">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Screen -->
+  <div id="start-screen">
+    <h2>Snake Quiz Game</h2>
+    <div class="controls-info">
+      <p>Use arrow keys to move the snake</p>
+      <p>Eat purple apples to grow and gain points</p>
+      <p>Answer questions correctly to continue playing</p>
+      <p>Avoid hitting yourself!</p>
+    </div>
+    <button class="btn" id="start-button">Start Game</button>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quiz-modal" class="modal">
+    <div class="modal-content">
+      <h2>Quiz Time!</h2>
+      <p class="question" id="question-text">Question goes here...</p>
+      <div class="options" id="options-container">
+        <!-- Options will be added dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="game-over-modal" class="modal">
+    <div class="modal-content">
+      <h2>Game Over!</h2>
+      <p class="question" id="game-over-message">You answered X out of Y questions correctly!</p>
+      <button class="btn" id="restart-button">Play Again</button>
+    </div>
+  </div>
+
+<script>
+// Game elements
+const canvas = document.getElementById('game');
+const context = canvas.getContext('2d');
+const scoreDisplay = document.getElementById('score');
+const questionsAnsweredDisplay = document.getElementById('questions-answered');
+const highScoreDisplay = document.getElementById('high-score');
+const quizModal = document.getElementById('quiz-modal');
+const questionText = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options-container');
+const gameOverModal = document.getElementById('game-over-modal');
+const gameOverMessage = document.getElementById('game-over-message');
+const restartButton = document.getElementById('restart-button');
+const startScreen = document.getElementById('start-screen');
+const startButton = document.getElementById('start-button');
+
+// Game variables
+const grid = 16;
+let count = 0;
+let score = 0;
+let questionsAnswered = 0;
+let highScore = localStorage.getItem('snakeHighScore') || 0;
+let gamePaused = true;
+let gameStarted = false;
+let currentQuestionIndex = 0;
+let gameLoopId = null;
+
+highScoreDisplay.textContent = highScore;
+
+// Snake object
+let snake = {
+  x: 160,
+  y: 160,
+  dx: grid,
+  dy: 0,
+  cells: [],
+  maxCells: 4
+};
+
+// Apple object
+let apple = {
+  x: 320,
+  y: 320
+};
+
+// Quiz questions
+let quizQuestions = [];
+try {
+  // Parse the questions from the EJS template variable
+  const questionsData = document.getElementById('question-data').dataset.questions;
+  quizQuestions = JSON.parse(questionsData);
+  console.log("Questions loaded:", quizQuestions.length);
+} catch (error) {
+  console.error("Error loading questions:", error);
+  // Fallback questions in case API fails
+  
+}
+
+// Shuffle the array using Fisher-Yates algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Initialize the game
+function initGame() {
+  score = 0;
+  questionsAnswered = 0;
+  scoreDisplay.textContent = score;
+  questionsAnsweredDisplay.textContent = questionsAnswered;
+  
+  snake = {
+    x: 160,
+    y: 160,
+    dx: grid,
+    dy: 0,
+    cells: [],
+    maxCells: 4
+  };
+  
+  apple = {
+    x: getRandomInt(0, 25) * grid,
+    y: getRandomInt(0, 25) * grid
+  };
+  
+  // Shuffle questions
+  shuffleArray(quizQuestions);
+  currentQuestionIndex = 0;
+  
+  // Reset game state
+  gamePaused = false;
+  
+  // Cancel any existing loop
+  if (gameLoopId) {
+    cancelAnimationFrame(gameLoopId);
+  }
+  
+  // Start the game loop
+  gameLoopId = requestAnimationFrame(loop);
+}
+
+// Get random integer
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// Start button event
+startButton.addEventListener('click', function() {
+  startScreen.style.display = 'none';
+  gameStarted = true;
+  initGame();
+});
+
+// Show the quiz modal with the current question
+function showQuiz() {
+  gamePaused = true;
+  
+  // Get current question
+  const currentIndex = currentQuestionIndex % quizQuestions.length;
+  const question = quizQuestions[currentIndex];
+  
+  if (!question) {
+    console.error("No question found at index", currentIndex);
+    endGame("Error loading question!");
+    return;
+  }
+  
+  questionText.textContent = question.question;
+  
+  // Clear previous options
+  optionsContainer.innerHTML = '';
+  
+  // Add options
+  const shuffledOptions = [...question.options];
+  shuffleArray(shuffledOptions);
+  
+  shuffledOptions.forEach(option => {
+    const button = document.createElement('button');
+    button.className = 'option-btn';
+    button.textContent = option;
+    button.addEventListener('click', () => checkAnswer(option));
+    optionsContainer.appendChild(button);
+  });
+  
+  // Show modal
+  quizModal.style.display = 'block';
+}
+
+// Check if the answer is correct
+function checkAnswer(selectedOption) {
+  const currentIndex = currentQuestionIndex % quizQuestions.length;
+  const question = quizQuestions[currentIndex];
+  
+  if (selectedOption === question.answer) {
+    // Correct answer
+    quizModal.style.display = 'none';
+    questionsAnswered++;
+    questionsAnsweredDisplay.textContent = questionsAnswered;
+    currentQuestionIndex++;
+    gamePaused = false;
+    gameLoopId = requestAnimationFrame(loop);
+  } else {
+    // Wrong answer
+    endGame("Wrong answer! Game over!");
+  }
+}
+
+// End the game
+function endGame(message) {
+  quizModal.style.display = 'none';
+  gameOverMessage.textContent = `${message} You scored ${score} points and answered ${questionsAnswered} questions correctly!`;
+  gameOverModal.style.display = 'block';
+  gamePaused = true;
+  
+  // Update high score
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem('snakeHighScore', highScore);
+    highScoreDisplay.textContent = highScore;
+  }
+  
+  // Cancel animation frame
+  if (gameLoopId) {
+    cancelAnimationFrame(gameLoopId);
+    gameLoopId = null;
+  }
+}
+
+// Game loop
+function loop() {
+  if (gamePaused) return;
+  
+  gameLoopId = requestAnimationFrame(loop);
+  
+  // Slow game loop to 15 fps
+  if (++count < 4) {
+    return;
+  }
+  
+  count = 0;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Move snake
+  snake.x += snake.dx;
+  snake.y += snake.dy;
+  
+  // Wrap snake position horizontally
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  } else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+  
+  // Wrap snake position vertically
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  } else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+  
+  // Keep track of where snake has been
+  snake.cells.unshift({x: snake.x, y: snake.y});
+  
+  // Remove cells as we move away from them
+  if (snake.cells.length > snake.maxCells) {
+    snake.cells.pop();
+  }
+  
+  // Draw apple
+  context.fillStyle = '#9370db'; // Purple apple to match theme
+  context.beginPath();
+  context.arc(apple.x + grid/2, apple.y + grid/2, grid/2 - 1, 0, Math.PI * 2);
+  context.fill();
+  
+  // Draw snake
+  context.fillStyle = '#6600c5'; // Main body color
+  snake.cells.forEach(function(cell, index) {
+    // Draw snake cell
+    context.fillRect(cell.x, cell.y, grid-1, grid-1);
+    
+    // Snake ate apple
+    if (cell.x === apple.x && cell.y === apple.y) {
+      snake.maxCells++;
+      score++;
+      scoreDisplay.textContent = score;
+      
+      // Place new apple
+      apple.x = getRandomInt(0, 25) * grid;
+      apple.y = getRandomInt(0, 25) * grid;
+      
+      // Show quiz
+      showQuiz();
+    }
+    
+    // Check collision with all cells after this one
+    for (let i = index + 1; i < snake.cells.length; i++) {
+      // Snake collided with itself
+      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+        endGame("You collided with yourself!");
+        return;
+      }
+    }
+  });
+}
+
+// Key controls
+document.addEventListener('keydown', function(e) {
+  // Prevent keys from scrolling the page
+  if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    e.preventDefault();
+  }
+  
+  // Don't change direction when game is paused
+  if (gamePaused) return;
+  
+  // Left arrow
+  if (e.which === 37 && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  }
+  // Up arrow
+  else if (e.which === 38 && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  }
+  // Right arrow
+  else if (e.which === 39 && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  }
+  // Down arrow
+  else if (e.which === 40 && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});
+
+// Restart button event
+restartButton.addEventListener('click', function() {
+  gameOverModal.style.display = 'none';
+  initGame();
+});
+
+// Initial draw
+if (!gameStarted) {
+  // Draw initial snake
+  context.fillStyle = '#1a1a1a';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw initial snake position
+  context.fillStyle = '#6600c5';
+  context.fillRect(snake.x, snake.y, grid-1, grid-1);
+  
+  // Draw initial apple
+  context.fillStyle = '#9370db';
+  context.beginPath();
+  context.arc(apple.x + grid/2, apple.y + grid/2, grid/2 - 1, 0, Math.PI * 2);
+  context.fill();
+}
+</script>
+</body>
+</html>

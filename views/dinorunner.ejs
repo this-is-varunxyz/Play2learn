@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chrome Dinosaur Game with MCQs</title>
+        <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #080808;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 1rem;
+        }
+        
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .glow {
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 40rem;
+            height: 0;
+            box-shadow: 0 0 700px 100px rgba(147, 112, 219, 0.2);
+            rotate: -30deg;
+            z-index: -1;
+        }
+        
+        header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo .play2 {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo .learn {
+            background: linear-gradient(90deg, #ffffff, #aaaaaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .game-container {
+            position: relative;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            animation: animatedBorder 4s linear infinite;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: -1;
+            background: linear-gradient(90deg, #9370db, #6600c5, #5300a0, #9370db);
+            background-size: 400% 400%;
+            border-radius: 20px;
+            animation: animatedBorder 8s ease infinite;
+        }
+        
+        @keyframes animatedBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        #board {
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            display: block;
+        }
+        
+        .instructions {
+            margin: 1rem 0;
+            padding: 1rem;
+            text-align: center;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .key {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(147, 112, 219, 0.2);
+            border: 1px solid #9370db;
+            border-radius: 5px;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            font-weight: bold;
+            min-width: 1.5rem;
+            box-shadow: 0 2px 0 rgba(102, 0, 197, 0.5);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(17, 17, 17, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #6600c5;
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+            text-align: center;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .modal h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #9370db, #6600c5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-btn {
+            background: #1f1f1f;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-btn:hover, .option-btn:active {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            transform: translateY(-2px);
+        }
+        
+        .result-container {
+            margin-top: 1rem;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 0 10px rgba(102, 0, 197, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .btn.secondary {
+            background: transparent;
+            border: 2px solid #9370db;
+        }
+        
+        .btn-info {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        .chances-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #9370db;
+        }
+        
+        .mobile-instructions {
+            margin-top: 1rem;
+            font-style: italic;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .instructions {
+                margin-bottom: 0.5rem;
+                padding: 0.7rem;
+            }
+            
+            .instructions p {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-instructions {
+                display: block;
+            }
+            
+            .modal {
+                padding: 1.5rem;
+            }
+            
+            .option-btn {
+                padding: 0.7rem;
+            }
+        }
+        </style>
+    </head>
+    <body>
+    <div id="question-data" data-questions="<%= questions %>" style="display:none;"></div>
+
+        <div class="glow"></div>
+        <img src="images/gradient.png">
+        
+        <header>
+            <div class="logo">
+                <span class="play2">Play2</span><span class="learn">Learn</span>
+            </div>
+        </header>
+        
+        <h1>Chrome Dinosaur Game</h1>
+        
+        <div class="game-container">
+            <canvas id="board"></canvas>
+        </div>
+        
+        <div class="instructions">
+            <p>Press <span class="key">X</span> to start the game • Use <span class="key">Space</span> or <span class="key">↑</span> to jump</p>
+            <p class="mobile-instructions">Tap the screen to jump</p>
+        </div>
+        <script src="dino.js"></script>
+
+    </body>
+</html>

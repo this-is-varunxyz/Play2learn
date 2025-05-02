@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features - Play2learn</title>
+    <style>
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      body {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      
+      .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 2;
+      }
+      
+      /* Header Styles */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+      }
+      
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .logo-icon {
+        color: #9370db;
+        font-size: 1.8rem;
+      }
+      
+      header h1.logo {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+      
+      .logo .play2 {
+        background: linear-gradient(90deg, #6600c5, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .logo .learn {
+        background: linear-gradient(90deg, #ffffff, #aaaaaa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      
+      nav a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+      
+      nav a:hover {
+        color: #9370db;
+      }
+      
+      .btn-signin, .btn-getstarted {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      .btn-signin {
+        background: #9370db;
+        color: white;
+        border: none;
+        box-shadow: 0 0 15px rgba(147, 112, 219, 0.4);
+      }
+      
+      .btn-signin:hover {
+        background: #8260ca;
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(147, 112, 219, 0.6);
+      }
+      
+      /* Features Content Styles */
+      .features-hero {
+        padding: 4rem 0;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .tagbox {
+        margin-bottom: 1.5rem;
+        display: inline-block;
+      }
+      
+      .tag {
+        background-color: rgba(147, 112, 219, 0.1);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(147, 112, 219, 0.3);
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+      }
+      
+      .purple-dot {
+        color: #9370db;
+        margin-left: 0.5rem;
+      }
+      
+      h1 {
+        font-size: 4rem;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+      }
+      
+      .subtitle {
+        font-size: 1.5rem;
+        opacity: 0.8;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+      
+      .feature-card {
+        background: rgba(20, 20, 30, 0.5);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(147, 112, 219, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
+      }
+      
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #9370db;
+      }
+      
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .feature-card p {
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+      
+      .coming-soon {
+        background: rgba(147, 112, 219, 0.15);
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        color: #9370db;
+        margin-top: auto;
+        font-weight: 600;
+      }
+      
+      /* Development Notice */
+      .dev-notice {
+        background: rgba(147, 112, 219, 0.1);
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        margin: 4rem 0;
+        border: 1px solid rgba(147, 112, 219, 0.3);
+      }
+      
+      .dev-notice h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #9370db;
+      }
+      
+      /* Background Effects */
+      .grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+        z-index: 1;
+      }
+      
+      .glow {
+        position: fixed;
+        top: 20%;
+        right: 10%;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(147, 112, 219, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+        filter: blur(60px);
+        z-index: 1;
+      }
+      
+      /* CTA Section */
+      .cta-section {
+        text-align: center;
+        padding: 4rem 0;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      
+      .btn-getstarted {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(147, 112, 219, 0.5);
+      }
+      
+      .btn-getstarted:hover {
+        background: rgba(147, 112, 219, 0.1);
+        transform: translateY(-2px);
+        border-color: #9370db;
+      }
+      
+      /* Login Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+        position: relative;
+        background-color: #121212;
+        margin: 10% auto;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(147, 112, 219, 0.4);
+        border: 1px solid #2a2a2a;
+        padding: 40px;
+        animation: modalOpen 0.4s ease;
+      }
+      
+      @keyframes modalOpen {
+        from {opacity: 0; transform: translateY(-30px);}
+        to {opacity: 1; transform: translateY(0);}
+      }
+      
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #777;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      
+      .close:hover {
+        color: #9370db;
+      }
+      
+      .modal-content h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      
+      .modal-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+      }
+      
+      .modal-btn-primary {
+        background: linear-gradient(90deg, #6600c5, #9370db);
+        color: white;
+        border: none;
+      }
+      
+      .modal-btn-secondary {
+        background: transparent;
+        color: #9370db;
+        border: 1px solid #9370db;
+      }
+      
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .feature-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        header {
+          padding: 1rem 0;
+        }
+        
+        .desktop-nav {
+          display: none;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .mobile-nav {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(10, 10, 10, 0.95);
+          z-index: 100;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+        }
+        
+        .mobile-nav.active {
+          display: flex;
+        }
+        
+        .close-menu {
+          position: absolute;
+          top: 2rem;
+          right: 2rem;
+          background: none;
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+        
+        h1 {
+          font-size: 2.5rem;
+        }
+        
+        .subtitle {
+          font-size: 1.2rem;
+        }
+        
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .cta-section h2 {
+          font-size: 2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 1rem;
+        }
+        
+        header h1.logo {
+          font-size: 1.5rem;
+        }
+        
+        .logo-icon {
+          font-size: 1.5rem;
+        }
+        
+        .tag {
+          padding: 0.4rem 1rem;
+          font-size: 0.8rem;
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+        
+        .subtitle {
+          font-size: 1rem;
+        }
+        
+        .feature-card {
+          padding: 1.5rem;
+        }
+        
+        .feature-icon {
+          font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+          font-size: 1.3rem;
+        }
+        
+        .modal-content {
+          padding: 30px 20px;
+        }
+        
+        .modal-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img class="grid" src="images/gradient.png" alt="Background gradient" />
+    <div class="glow"></div>
+    
+    <div class="container">
+      <header>
+        <div class="logo-container">
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <h1 class="logo"><span class="play2">Play2</span><span class="learn">learn</span></h1>
+        </div>
+        
+        <button class="mobile-menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        <nav class="desktop-nav">
+          <a class="games-link">Games</a>
+          <a href="/features">Features</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <button class="btn-signin">Login / Signup</button>
+        </nav>
+      </header>
+      
+      <div class="mobile-nav">
+        <button class="close-menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <a class="games-link">Games</a>
+        <a href="/features">Features</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <button class="btn-signin mobile-signin">Login / Signup</button>
+      </div>
+
+      <main>
+        <section class="features-hero">
+          <div class="tagbox">
+            <div class="tag">
+              Features <span class="purple-dot">⚡</span>
+            </div>
+          </div>
+          <h1>Learning Through Play</h1>
+          <p class="subtitle">
+            Discover how Play2learn transforms boring study sessions into engaging gaming experiences with our innovative learning platform.
+          </p>
+        </section>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Custom Topics</h3>
+            <p>Upload any topic of your choice and set the difficulty level that matches your learning needs. You're in control of what you learn.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Game Selection</h3>
+            <p>Browse a growing library of games and choose the ones that match your learning style and preferences. More games are added regularly.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI-Generated Questions</h3>
+            <p>Progress through games by answering AI-generated questions relevant to your chosen topics, ensuring that learning is seamlessly integrated with gameplay.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Full Syllabus Support</h3>
+            <p>Upload your entire syllabus and have our system generate appropriate questions to help you master all of your course content.</p>
+            <div class="coming-soon">Coming Soon</div>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🛠️</div>
+            <h3>Developer API</h3>
+            <p>Create and upload your own games to the platform with our comprehensive documentation and developer tools.</p>
+            <div class="coming-soon">Coming Soon</div>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <h3>Custom MCQs</h3>
+            <p>Create your own multiple-choice questions or let our AI generate them for you based on your study materials.</p>
+            <div class="coming-soon">Coming Soon</div>
+          </div>
+        </div>
+        
+        <div class="dev-notice">
+          <h3>Under Development</h3>
+          <p>Play2learn is constantly evolving. Our team is working hard to make games more engaging and perfect the learning experience. Stay tuned for regular updates and new features!</p>
+        </div>
+        
+        <section class="cta-section">
+          <h2>Ready to transform your learning experience?</h2>
+          <p>Join Play2learn today and discover how fun studying can be when combined with gaming.</p>
+          <div class="cta-buttons">
+            <a href="#" class="btn-getstarted">Documentation</a>
+            <a href="#" class="btn-signin cta-signin">Get Started</a>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- Login Required Modal -->
+    <div id="login-required-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login Required</h2>
+        <p>You need to be logged in to access games. Would you like to login or create an account?</p>
+        <div class="modal-buttons">
+          <a href="/" class="modal-btn modal-btn-primary">Login Now</a>
+          <button class="modal-btn modal-btn-secondary close-modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // DOM Elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const gamesLinks = document.querySelectorAll('.games-link');
+        const loginRequiredModal = document.getElementById('login-required-modal');
+        const closeModal = document.querySelector('.close');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const allSigninBtns = document.querySelectorAll('.btn-signin');
+        
+        // Check if user is already logged in
+        const currentUser = JSON.parse(localStorage.getItem("play2learn_current_user"));
+        
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileNav.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+        
+        // Update all signin buttons if user is logged in
+        if (currentUser && currentUser.isLoggedIn) {
+          allSigninBtns.forEach(btn => {
+            btn.textContent = `Hi, ${currentUser.username}`;
+            btn.addEventListener("click", () => {
+              window.location.href = "/games";
+            });
+          });
+        } else {
+          // Show signup modal when buttons are clicked
+          allSigninBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+              window.location.href = "/";
+            });
+          });
+        }
+        
+        // Add event listeners to Games links to check login status
+        gamesLinks.forEach(link => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            // Check if user is logged in
+            if (currentUser && currentUser.isLoggedIn) {
+              // User is logged in, navigate to games
+              window.location.href = "/games";
+            } else {
+              // User is not logged in, show login required modal
+              loginRequiredModal.style.display = "block";
+              document.body.style.overflow = "hidden"; // Prevent scrolling
+            }
+          });
+        });
+        
+        // Close modal when clicking the X or Cancel button
+        closeModal.addEventListener("click", () => {
+          loginRequiredModal.style.display = "none";
+          document.body.style.overflow = "auto"; // Re-enable scrolling
+        });
+        
+        closeModalBtn.addEventListener("click", () => {
+          loginRequiredModal.style.display = "none";
+          document.body.style.overflow = "auto"; // Re-enable scrolling
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener("click", (e) => {
+          if (e.target === loginRequiredModal) {
+            loginRequiredModal.style.display = "none";
+            document.body.style.overflow = "auto";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

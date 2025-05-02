@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play2Learn - Games</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #0c0b19;
+            color: #e7e7e7;
+            min-height: 100vh;
+            line-height: 1.5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+                sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow {
+            height: 0;
+            width: 30vw;
+            position: absolute;
+            top: 15%;
+            right: -5%;
+            box-shadow: 0 0 10vw 5vw rgba(147, 112, 219, 0.2);
+            rotate: -30deg;
+            z-index: -1;
+        }
+
+        
+
+.container {
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0;
+  z-index: 999;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #9370db, #6600c5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.05em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav a {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  transition: all 0.3s ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #9370db;
+}
+
+nav button {
+  background-color: transparent;
+  color: #e7e7e7;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #6600c5;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #6600c5;
+  color: white;
+  box-shadow: 0 0 15px rgba(102, 0, 197, 0.5);
+}
+
+
+
+.btn-signin {
+  text-decoration: none;
+  background: linear-gradient(90deg, #6600c5, #9370db);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(102, 0, 197, 0.3);
+}
+
+.btn-signin:hover {
+  box-shadow: 0 0 20px rgba(102, 0, 197, 0.6);
+  transform: translateY(-2px);
+}
+
+.purple-dot {
+  display: inline-block;
+  color: #9370db;
+  font-weight: bold;
+  margin-right: 0.1em;
+}
+.navbartext{
+font-weight: bold;
+}
+/* Navbar link hover effect */
+nav a.navbartext {
+position: relative;
+font-weight: bold;
+color: inherit;
+transition: color 0.3s ease;
+}
+
+nav a.navbartext::after {
+content: "";
+position: absolute;
+width: 0;
+height: 2px;
+left: 0;
+bottom: -4px;
+background: linear-gradient(90deg, #6600c5, #9370db);
+transition: width 0.3s ease;
+}
+
+nav a.navbartext:hover {
+color: #9370db;
+}
+
+nav a.navbartext:hover::after {
+width: 100%;
+}
+
+/* Navbar button enhancement */
+nav button.btn-signin {
+background: linear-gradient(90deg, #6600c5, #9370db);
+border: none;
+padding: 0.8rem 2rem;
+border-radius: 2rem;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 0.05em;
+color: #fff;
+box-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
+transition: all 0.3s ease;
+}
+
+nav button.btn-signin:hover {
+transform: translateY(-2px) scale(1.03);
+box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+}
+
+/* Logo hover effect */
+header h1.logo {
+cursor: pointer;
+transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+header h1.logo:hover {
+transform: scale(1.05);
+text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
+}
+
+
+
+
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            color: #9370db;
+            font-size: 1.8rem;
+        }
+
+        header h1.logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .logo .play2 {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo .learn {
+            background: linear-gradient(90deg, #ffffff, #aaaaaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05rem;
+            transition: all 0.3s ease;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #9370db;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .search-icon {
+            color: #9370db;
+            font-size: 1.5rem;
+        }
+
+        .sign-in-btn {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sign-in-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .weekly-update {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(147, 112, 219, 0.2);
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .weekly-update svg {
+            color: #9370db;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ffffff, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero h3 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #9370db;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a7a7a7;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-btn:hover {
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            border: 1px solid #444;
+            background-color: transparent;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: #e7e7e7;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-btn:hover {
+            border-color: #9370db;
+            background-color: rgba(147, 112, 219, 0.1);
+        }
+
+        /* Featured Section */
+        .featured-section {
+            margin: 3rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #9370db;
+        }
+
+        .view-all {
+            color: #a7a7a7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: #9370db;
+        }
+
+        .featured-carousel {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 360px;
+            margin-bottom: 2rem;
+        }
+
+        .featured-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: #fff;
+        }
+
+        .carousel-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+        }
+
+        .carousel-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(147, 112, 219, 0.8);
+        }
+
+        /* Category Filters */
+        .category-filters {
+            display: flex;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            color: #e7e7e7;
+            border: 1px solid #333;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: #9370db;
+            border-color: #9370db;
+            color: white;
+        }
+
+        .filter-btn:hover:not(.active) {
+            border-color: #9370db;
+            background-color: rgba(147, 112, 219, 0.1);
+        }
+
+        /* Games Grid */
+        .view-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .view-option {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.3rem;
+            background-color: #1d1a2f;
+            cursor: pointer;
+        }
+
+        .view-option.active {
+            background-color: #9370db;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .game-card {
+            background-color: #1d1a2f;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(147, 112, 219, 0.3);
+        }
+
+        .game-img-container {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .game-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.05);
+        }
+
+        .game-type {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .grid {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.3;
+  z-index: -1;
+  max-width: 60%;
+  height: auto;
+}
+
+        .game-info {
+            padding: 1rem;
+        }
+
+        .game-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #e7e7e7;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .game-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ffd700;
+            font-size: 0.8rem;
+        }
+
+        .game-players {
+            color: #a7a7a7;
+            font-size: 0.8rem;
+        }
+
+        .play-btn {
+            width: 100%;
+            padding: 0.6rem 0;
+            margin-top: 0.8rem;
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            border-radius: 0.4rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+        }
+
+        /* Most Played Section */
+        .most-played {
+            margin: 3rem 0;
+        }
+
+        .most-played-list {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: #9370db #1d1a2f;
+        }
+
+        .most-played-list::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .most-played-list::-webkit-scrollbar-track {
+            background: #1d1a2f;
+            border-radius: 3px;
+        }
+
+        .most-played-list::-webkit-scrollbar-thumb {
+            background-color: #9370db;
+            border-radius: 3px;
+        }
+
+        .most-played-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 250px;
+        }
+
+        .most-played-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .most-played-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .most-played-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .most-played-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.8rem;
+            color: #a7a7a7;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 3rem 0 1rem;
+            background-color: #0a091b;
+            border-top: 1px solid #222;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            color: #9370db;
+        }
+
+        .footer-column p {
+            color: #a7a7a7;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #1d1a2f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: #9370db;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #a7a7a7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #9370db;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 0.4rem;
+            border: 1px solid #333;
+            background-color: #1d1a2f;
+            color: #e7e7e7;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #9370db;
+        }
+
+        .newsletter-btn {
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            border-radius: 0.4rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: #777;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .footer-legal a:hover {
+            color: #9370db;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+
+            .hero h3 {
+                font-size: 2.5rem;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <img class="grid" src="images/gradient.png" alt="Background gradient" />
+
+    <div class="glow"></div>
+    
+    <div class="container">
+
+        
+        <header style="margin-top: 1vw;" >
+            
+            <div class="logo-container" onclick="window.location.href = '/'" >
+              <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <h1 class="logo"><span class="play2">Play2</span><span class="learn">learn</span></h1>
+          </div>
+            <nav>
+              <a  class="navbartext" href="/games">Games</a>
+              <a  class="navbartext" href="#">Features</a>
+              <a class="navbartext" href="#">About</a>
+              <a class="navbartext"  href="#">Contact</a>
+            </nav>
+          </header>
+        <!-- <header>
+            <div class="logo-container">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <h1 class="logo"><span class="play2">Play2</span><span class="learn">learn</span></h1>
+            </div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Categories</a>
+                <a href="#">Popular</a>
+                <a href="#">New Games</a>
+                <div class="search-container">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <button class="sign-in-btn">Sign In</button>
+            </nav>
+        </header> -->
+
+
+        <section class="hero">
+            <div class="weekly-update">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                </svg>
+                New games added weekly
+            </div>
+            <h2>Play Amazing Games</h2>
+            <h3>Join the Community</h3>
+            <p>Upload your syllabus, choose your game, and unlock progress by solving quizzes mid-game. Turn boring study sessions into thrilling adventures where learning becomes part of the gameplay.</p>
+            <div class="hero-buttons">
+                <a href="#" class="primary-btn">Browse Games</a>
+                <a href="#" class="secondary-btn">Join Now</a>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Featured Games</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="featured-carousel">
+                <img src="images/hill.png" alt="Featured Game" class="featured-img">
+                <div class="carousel-arrows">
+                    <div class="carousel-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 18l-6-6 6-6"></path>
+                        </svg>
+                    </div>
+                    <div class="carousel-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </section>
+
+       
+
+        <div class="section-header">
+            <h2>All Games</h2>
+            <div class="view-options">
+                <div class="view-option active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <div class="view-option">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            
+       
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Play2Learn</h3>
+                    <p>Play2Learn is an innovative platform that combines gaming with education, making learning fun and engaging for students of all ages.</p>
+                    <div class="social-links">
+                        <div class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </div>
+                        <div class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </div>
+                        <div class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Games</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Popular</a></li>
+                        <li><a href="#">New Releases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to get updates on new games and features.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2025 Play2Learn. All rights reserved.</div>
+                <div class="footer-legal">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   <script type="module" >
+    import {games} from "./gamesgrid/gamesgrid.js";
+import {popup} from "./gamesgrid/gamespopup.js";
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Populate games grid
+    const gamesGrid = document.querySelector('.games-grid');
+    games.forEach((game) => {
+        gamesGrid.innerHTML += `
+            <div class="game-card">
+                <div class="game-img-container">
+                    <img src="${game.img}" class="game-img">
+                    <div class="game-type">${game.tag}</div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">${game.name}</h3>
+                    <button class="play-btn" data-game-name="${game.name}" data-game-img="${game.img}">Play Now</button>
+                </div>
+            </div>
+        `;
+    });
+    
+    // Add event listeners to all Play Now buttons
+    document.querySelectorAll('.play-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const gameName = this.getAttribute('data-game-name');
+            const gameImg = this.getAttribute('data-game-img');
+            popup(gameName, gameImg);
+        });
+    });
+
+    // Featured carousel functionality
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    const featuredImg = document.querySelector('.featured-img');
+    const carouselArrows = document.querySelectorAll('.carousel-arrow');
+    
+    // Array of image sources for carousel
+    const carouselImages = [
+        'images/hill.png',
+        'images/snake.png',
+        'images/tictactoe.png',
+        'images/flappy.png'
+    ];
+    
+    let currentSlide = 0;
+    
+    // Function to update the carousel
+    function updateCarousel(index) {
+        // Update image
+        featuredImg.src = carouselImages[index];
+        
+        // Update dots
+        carouselDots.forEach(dot => dot.classList.remove('active'));
+        carouselDots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+    
+    // Set up dot click events
+    carouselDots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            updateCarousel(index);
+        });
+    });
+    
+    // Set up arrow click events
+    carouselArrows[0].addEventListener('click', function() {
+        // Previous slide
+        let newIndex = currentSlide - 1;
+        if (newIndex < 0) newIndex = carouselImages.length - 1;
+        updateCarousel(newIndex);
+    });
+    
+    carouselArrows[1].addEventListener('click', function() {
+        // Next slide
+        let newIndex = currentSlide + 1;
+        if (newIndex >= carouselImages.length) newIndex = 0;
+        updateCarousel(newIndex);
+    });
+    
+    // Auto-rotate carousel every 5 seconds
+    setInterval(function() {
+        let newIndex = currentSlide + 1;
+        if (newIndex >= carouselImages.length) newIndex = 0;
+        updateCarousel(newIndex);
+    }, 5000);
+
+    // Sign in button
+    const signInBtn = document.querySelector('.sign-in-btn');
+    signInBtn.addEventListener('click', function() {
+        alert('Sign in functionality will be implemented here');
+    });
+
+    // Hero section buttons
+    const heroBtns = document.querySelectorAll('.hero-buttons a');
+    heroBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Button clicked: ' + this.textContent);
+        });
+    });
+
+    // Newsletter form
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing with: ' + email);
+                this.reset();
+            } else {
+                alert('Please enter your email address');
+            }
+        });
+    }
+});
+   </script>
+   
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play2Learn Tic Tac Toe</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #080808;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 1rem;
+        }
+        
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .glow {
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            width: 40rem;
+            height: 0;
+            box-shadow: 0 0 700px 100px rgba(147, 112, 219, 0.2);
+            rotate: -30deg;
+            z-index: -1;
+        }
+        
+        header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo .play2 {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo .learn {
+            background: linear-gradient(90deg, #ffffff, #aaaaaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .game-container {
+            position: relative;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            animation: animatedBorder 4s linear infinite;
+            padding: 4px;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: -1;
+            background: linear-gradient(90deg, #9370db, #6600c5, #5300a0, #9370db);
+            background-size: 400% 400%;
+            border-radius: 20px;
+            animation: animatedBorder 8s ease infinite;
+        }
+
+        @keyframes animatedBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            border-radius: 16px;
+            padding: 10px;
+        }
+
+        .cell {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cell:hover {
+            background: rgba(147, 112, 219, 0.15);
+            transform: scale(1.03);
+        }
+
+        .cell.x {
+            color: #9370db;
+            text-shadow: 0 0 10px rgba(147, 112, 219, 0.7);
+        }
+
+        .cell.o {
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+        }
+
+        .status {
+            margin: 1rem 0;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            min-width: 300px;
+        }
+
+        .instructions {
+            margin: 1rem 0;
+            padding: 1rem;
+            text-align: center;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .key {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(147, 112, 219, 0.2);
+            border: 1px solid #9370db;
+            border-radius: 5px;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            font-weight: bold;
+            min-width: 1.5rem;
+            box-shadow: 0 2px 0 rgba(102, 0, 197, 0.5);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(17, 17, 17, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #6600c5;
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+            text-align: center;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .modal h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #9370db, #6600c5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-btn {
+            background: #1f1f1f;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-btn:hover, .option-btn:active {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            transform: translateY(-2px);
+        }
+        
+        .result-container {
+            margin-top: 1rem;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #6600c5, #9370db);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 0 10px rgba(102, 0, 197, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .btn.secondary {
+            background: transparent;
+            border: 2px solid #9370db;
+        }
+        
+        .btn-info {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        .question-feedback {
+            padding: 0.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .feedback-correct {
+            background: rgba(75, 181, 67, 0.2);
+            border: 1px solid #4bb543;
+        }
+
+        .feedback-incorrect {
+            background: rgba(218, 78, 78, 0.2);
+            border: 1px solid #da4e4e;
+        }
+
+        .icon-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            #game-board {
+                grid-template-columns: repeat(3, 80px);
+                grid-template-rows: repeat(3, 80px);
+            }
+            
+            .cell {
+                font-size: 2.5rem;
+            }
+            
+            .instructions {
+                margin-bottom: 0.5rem;
+                padding: 0.7rem;
+            }
+            
+            .instructions p {
+                font-size: 0.9rem;
+            }
+            
+            .modal {
+                padding: 1.5rem;
+            }
+            
+            .option-btn {
+                padding: 0.7rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #game-board {
+                grid-template-columns: repeat(3, 70px);
+                grid-template-rows: repeat(3, 70px);
+                gap: 5px;
+            }
+            
+            .cell {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div id="question-data" data-questions="<%= questions %>" style="display:none;"></div>
+
+    <div class="icon-grid"></div>
+    <div class="glow"></div>
+
+    <header>
+        <div class="logo">
+            <span class="play2">Play2</span><span class="learn">Learn</span>
+        </div>
+    </header>
+
+    <div class="instructions">
+        <p>Answer questions correctly to place your mark!</p>
+        <p>If you answer incorrectly, you'll lose your turn.</p>
+    </div>
+
+    <div class="status" id="status">Your turn (X)</div>
+
+    <div class="game-container">
+        <div id="game-board"></div>
+    </div>
+
+    <button id="restart-btn" class="btn">Restart Game</button>
+
+    <!-- Modal for questions -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="question-modal">
+        <h2>Answer to Play</h2>
+        <div class="question-text" id="question-text"></div>
+        <div id="options-container"></div>
+        <div class="result-container hide" id="result-container">
+            <div class="question-feedback" id="question-feedback"></div>
+            <button class="btn" id="continue-btn">Continue</button>
+        </div>
+    </div>
+
+    <!-- Modal for game results -->
+    <div class="modal" id="result-modal">
+        <h2 id="result-title">Game Over</h2>
+        <div class="question-text" id="result-message"></div>
+        <button class="btn" id="play-again-btn">Play Again</button>
+    </div>
+
+    <script>
+        // Game state
+        const gameState = {
+            board: Array(9).fill(''),
+            currentPlayer: 'X',
+            gameActive: true,
+            currentCellIndex: null
+        };
+
+        // DOM Elements
+        const gameBoard = document.getElementById('game-board');
+        const statusDisplay = document.getElementById('status');
+        const restartBtn = document.getElementById('restart-btn');
+        const overlay = document.getElementById('overlay');
+        const questionModal = document.getElementById('question-modal');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const resultContainer = document.getElementById('result-container');
+        const questionFeedback = document.getElementById('question-feedback');
+        const continueBtn = document.getElementById('continue-btn');
+        const resultModal = document.getElementById('result-modal');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+        const playAgainBtn = document.getElementById('play-again-btn');
+
+        // MCQ Questions
+        let questions = [ ];
+        try {
+  // Parse the questions from the EJS template variable
+  const questionsData = document.getElementById('question-data').dataset.questions;
+  questions = JSON.parse(questionsData);
+  console.log("Questions loaded:", quizQuestions.length);
+} catch (error) {
+  console.error("Error loading questions:", error);
+  // Fallback questions in case API fails
+  
+}
+        // Initialize game
+        function initGame() {
+            // Create board cells
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.dataset.index = i;
+                cell.addEventListener('click', handleCellClick);
+                gameBoard.appendChild(cell);
+            }
+
+            // Reset game state
+            gameState.board = Array(9).fill('');
+            gameState.currentPlayer = 'X';
+            gameState.gameActive = true;
+            updateStatus();
+        }
+
+        // Update status message
+        function updateStatus() {
+            statusDisplay.textContent = gameState.gameActive 
+                ? `${gameState.currentPlayer === 'X' ? 'Your' : 'AI\'s'} turn (${gameState.currentPlayer})`
+                : '';
+        }
+
+        // Handle cell click
+        function handleCellClick(event) {
+            const index = parseInt(event.target.dataset.index);
+            
+            // Check if cell is already occupied or game is over
+            if (gameState.board[index] !== '' || !gameState.gameActive || gameState.currentPlayer === 'O') {
+                return;
+            }
+
+            // Store the clicked cell index
+            gameState.currentCellIndex = index;
+            
+            // If player's turn, show question modal
+            if (gameState.currentPlayer === 'X') {
+                showQuestion();
+            }
+        }
+
+        // Show random question
+        function showQuestion() {
+            const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+            
+            // Clear previous content
+            questionText.textContent = randomQuestion.question;
+            optionsContainer.innerHTML = '';
+            resultContainer.classList.add('hide');
+            
+            // Add options
+            randomQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn');
+                button.addEventListener('click', () => {
+                    checkAnswer(option, randomQuestion.answer);
+                });
+                optionsContainer.appendChild(button);
+            });
+            
+            // Show modal
+            overlay.classList.add('show');
+            questionModal.classList.add('show');
+        }
+
+        // Check answer
+        function checkAnswer(selectedOption, answer) {
+            // Hide options
+            optionsContainer.innerHTML = '';
+            resultContainer.classList.remove('hide');
+            
+            const isCorrect = selectedOption === answer;
+            
+            // Show feedback
+            questionFeedback.textContent = isCorrect 
+                ? '✓ Correct! You can make your move.' 
+                : `✗ Incorrect! The correct answer is ${answer}. You lose this turn.`;
+            
+            questionFeedback.className = 'question-feedback ' + 
+                (isCorrect ? 'feedback-correct' : 'feedback-incorrect');
+            
+            // Add continue button event
+            continueBtn.onclick = () => {
+                hideQuestionModal();
+                
+                if (isCorrect) {
+                    // Make player's move
+                    makeMove(gameState.currentCellIndex, 'X');
+                    
+                    // Check for win or draw
+                    if (checkWin('X')) {
+                        endGame('You win!');
+                    } else if (isBoardFull()) {
+                        endGame('It\'s a draw!');
+                    } else {
+                        // AI's turn
+                        gameState.currentPlayer = 'O';
+                        updateStatus();
+                        setTimeout(makeAIMove, 700);
+                    }
+                } else {
+                    // Skip player's turn and let AI play
+                    gameState.currentPlayer = 'O';
+                    updateStatus();
+                    setTimeout(makeAIMove, 700);
+                }
+            };
+        }
+
+        // Hide question modal
+        function hideQuestionModal() {
+            overlay.classList.remove('show');
+            questionModal.classList.remove('show');
+        }
+
+        // Make move
+        function makeMove(index, player) {
+            gameState.board[index] = player;
+            const cell = document.querySelector(`.cell[data-index="${index}"]`);
+            cell.textContent = player;
+            cell.classList.add(player.toLowerCase());
+        }
+
+        // AI Move
+        function makeAIMove() {
+            if (!gameState.gameActive) return;
+            
+            // Find best move (simple AI - chooses first empty cell)
+            let bestMove = -1;
+            
+            // Try to win first
+            bestMove = findWinningMove('O');
+            
+            // If no winning move, try to block player
+            if (bestMove === -1) {
+                bestMove = findWinningMove('X');
+            }
+            
+            // If no winning or blocking move, pick center if available
+            if (bestMove === -1 && gameState.board[4] === '') {
+                bestMove = 4;
+            }
+            
+            // If center not available, pick a random empty cell
+            if (bestMove === -1) {
+                const emptyCells = gameState.board
+                    .map((cell, index) => cell === '' ? index : -1)
+                    .filter(index => index !== -1);
+                
+                if (emptyCells.length > 0) {
+                    bestMove = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                }
+            }
+            
+            // Make the move
+            if (bestMove !== -1) {
+                makeMove(bestMove, 'O');
+                
+                // Check for win or draw
+                if (checkWin('O')) {
+                    endGame('AI wins!');
+                } else if (isBoardFull()) {
+                    endGame('It\'s a draw!');
+                } else {
+                    // Back to player's turn
+                    gameState.currentPlayer = 'X';
+                    updateStatus();
+                }
+            }
+        }
+
+        // Find winning move for the given player
+        function findWinningMove(player) {
+            // Check each empty cell if placing the player's symbol there would result in a win
+            for (let i = 0; i < 9; i++) {
+                if (gameState.board[i] === '') {
+                    // Temporarily place the symbol
+                    gameState.board[i] = player;
+                    
+                    // Check if this move would win
+                    if (checkWin(player, false)) {
+                        // Undo the move and return this position
+                        gameState.board[i] = '';
+                        return i;
+                    }
+                    
+                    // Undo the move if it doesn't win
+                    gameState.board[i] = '';
+                }
+            }
+            
+            return -1; // No winning move found
+        }
+
+        // Check if the current player has won
+        function checkWin(player, updateUI = true) {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                [0, 4, 8], [2, 4, 6]             // Diagonals
+            ];
+            
+            for (const pattern of winPatterns) {
+                if (pattern.every(index => gameState.board[index] === player)) {
+                    if (updateUI) {
+                        gameState.gameActive = false;
+                        
+                        // Highlight winning cells
+                        pattern.forEach(index => {
+                            const cell = document.querySelector(`.cell[data-index="${index}"]`);
+                            cell.style.backgroundColor = 'rgba(147, 112, 219, 0.3)';
+                        });
+                    }
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        // Check if the board is full (draw)
+        function isBoardFull() {
+            return gameState.board.every(cell => cell !== '');
+        }
+
+        // End game and show result
+        function endGame(message) {
+            gameState.gameActive = false;
+            
+            // Show result modal
+            resultTitle.textContent = 'Game Over';
+            resultMessage.textContent = message;
+            
+            setTimeout(() => {
+                overlay.classList.add('show');
+                resultModal.classList.add('show');
+            }, 500);
+        }
+
+        // Event listeners
+        restartBtn.addEventListener('click', () => {
+            initGame();
+        });
+
+        playAgainBtn.addEventListener('click', () => {
+            overlay.classList.remove('show');
+            resultModal.classList.remove('show');
+            initGame();
+        });
+
+        // Initialize game on load
+        window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>

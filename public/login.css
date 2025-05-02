@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: #080808;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  .grid-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    opacity: 0.2;
+    z-index: -1;
+  }
+  
+  .glow {
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    width: 40rem;
+    height: 0;
+    box-shadow: 0 0 700px 100px rgba(147, 112, 219, 0.2);
+    rotate: -30deg;
+    z-index: -1;
+  }
+  
+  header {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .logo .play2 {
+    background: linear-gradient(90deg, #6600c5, #9370db);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .logo .learn {
+    background: linear-gradient(90deg, #ffffff, #aaaaaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .auth-box {
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    position: relative;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    animation: animatedBorder 4s linear infinite;
+  }
+  
+  .auth-box::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    z-index: -1;
+    background: linear-gradient(90deg, #9370db, #6600c5, #5300a0, #9370db);
+    background-size: 400% 400%;
+    border-radius: 20px;
+    animation: animatedBorder 8s ease infinite;
+  }
+  
+  @keyframes animatedBorder {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .auth-left,
+  .auth-right {
+    flex: 1;
+    padding: 3rem;
+  }
+  
+  .auth-left {
+    background: linear-gradient(135deg, #6600c5, #9370db);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  
+  .auth-left h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-left p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .sign-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .sign-btn:hover {
+    background: white;
+    color: #6600c5;
+  }
+  
+  .auth-right {
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .auth-right h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .social-icons button {
+    background: #1f1f1f;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .social-icons button:hover {
+    background: #6600c5;
+  }
+  
+  .or-text {
+    text-align: center;
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-right input {
+    padding: 0.8rem;
+    margin: 0.4rem 0;
+    border: none;
+    border-radius: 0.5rem;
+    background: #1f1f1f;
+    color: white;
+    width: 100%;
+  }
+  
+  .signup-btn {
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #6600c5, #9370db);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 2rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .signup-btn:hover {
+    box-shadow: 0 0 10px rgba(102, 0, 197, 0.6);
+  }
+  

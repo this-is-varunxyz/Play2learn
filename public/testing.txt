@@ -1,0 +1,110 @@
+{
+    question: "What is the capital of France?",
+    options: ["London", "Berlin", "Paris", "Madrid"],
+    correctAnswer: "Paris"
+},
+{
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    correctAnswer: "Mars"
+},
+{
+    question: "What is 2 + 2?",
+    options: ["3", "4", "5", "6"],
+    correctAnswer: "4"
+},
+{
+    question: "Which element has the symbol 'O'?",
+    options: ["Gold", "Oxygen", "Osmium", "Oganesson"],
+    correctAnswer: "Oxygen"
+},
+{
+    question: "What is the largest mammal?",
+    options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    correctAnswer: "Blue Whale"
+},
+{
+    question: "Which language is used for web development?",
+    options: ["Java", "Python", "C++", "JavaScript"],
+    correctAnswer: "JavaScript"
+},
+{
+    question: "What is the hardest natural substance?",
+    options: ["Gold", "Iron", "Diamond", "Ruby"],
+    correctAnswer: "Diamond"
+},
+{
+    question: "Which country is known as the Land of the Rising Sun?",
+    options: ["China", "Korea", "Japan", "Thailand"],
+    correctAnswer: "Japan"
+},
+{
+    question: "What is the chemical symbol for water?",
+    options: ["H2O", "CO2", "O2", "N2"],
+    correctAnswer: "H2O"
+},
+{
+    question: "Who wrote 'Romeo and Juliet'?",
+    options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    correctAnswer: "William Shakespeare"
+}
+
+
+
+
+
+
+
+
+
+
+  {
+    question: "What is the capital of France?",
+    options: ["London", "Berlin", "Paris", "Madrid"],
+    correctAnswer: "Paris"
+  },
+  {
+    question: "What is 9 x 7?",
+    options: ["56", "63", "72", "81"],
+    correctAnswer: "63"
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    correctAnswer: "Mars"
+  },
+  {
+    question: "What is the largest ocean on Earth?",
+    options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    correctAnswer: "Pacific Ocean"
+  },
+  {
+    question: "Who wrote 'Romeo and Juliet'?",
+    options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    correctAnswer: "William Shakespeare"
+  },
+  {
+    question: "What is the chemical symbol for gold?",
+    options: ["Go", "Gd", "Au", "Ag"],
+    correctAnswer: "Au"
+  },
+  {
+    question: "Which of these is NOT a primary color?",
+    options: ["Red", "Blue", "Green", "Yellow"],
+    correctAnswer: "Green"
+  },
+  {
+    question: "How many sides does a hexagon have?",
+    options: ["5", "6", "7", "8"],
+    correctAnswer: "6"
+  },
+  {
+    question: "What is the largest mammal in the world?",
+    options: ["African Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    correctAnswer: "Blue Whale"
+  },
+  {
+    question: "Which country is known as the Land of the Rising Sun?",
+    options: ["China", "Thailand", "Japan", "Korea"],
+    correctAnswer: "Japan"
+  }

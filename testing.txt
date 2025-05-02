@@ -1,0 +1,51 @@
+async function apicall(topicName, difficulty) {
+    try {
+        // Create model instance with appropriate settings for text generation
+        const textModel = genAI.getGenerativeModel({
+            model: "gemini-1.5-pro",
+            generationConfig: {
+                temperature: 0.7,
+                topP: 0.9,
+                topK: 40,
+                maxOutputTokens: 2048,
+            },
+        });
+        
+        // Construct the prompt for MCQ generation
+        const prompt = `Generate 10 multiple choice questions about ${topicName} with ${difficulty} difficulty level. 
+        Your response must be ONLY a valid JSON array with NO text outside the JSON structure.
+        
+        Return EXACTLY in this format with no comments, explanations, backticks, or markdown:
+        [
+          {
+            "question": "Question text here?",
+            "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+            "answer": "Correct option here"
+          },
+          ...more questions
+        ]
+        
+        Make sure that:
+        1. Each question has exactly 4 options
+        2. The answer must be exactly one of the options
+        3. Questions should be appropriate for the ${difficulty} difficulty level
+        4. All 10 questions must be about ${topicName}
+        5. Format must be valid JSON that can be parsed with JSON.parse()`;
+        
+        // Generate content
+        const result = await textModel.generateContent({
+            contents: [{ parts: [{ text: prompt }] }],
+        });
+        
+        let response = result.response.text();
+        
+        // Process response to ensure it's clean JSON
+        response = cleanJsonResponse(response);
+        const questions = JSON.parse(response);
+        
+        return questions;
+    } catch (error) {
+        console.error("Error in API call:", error);
+        throw error; // Re-throw so the route handler can catch it
+    }
+}
