@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Features - Play2learn</title>
+    <title>Contact - Play2learn</title>
     <style>
       /* Base Styles */
       * {
@@ -135,8 +135,8 @@
         box-shadow: 0 0 25px rgba(147, 112, 219, 0.6);
       }
       
-      /* Features Content Styles */
-      .features-hero {
+      /* Contact Content Styles */
+      .contact-hero {
         padding: 4rem 0;
         text-align: center;
         max-width: 800px;
@@ -182,74 +182,194 @@
         margin-right: auto;
       }
       
-      .feature-grid {
+      /* Contact Grid Layout */
+      .contact-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 2rem 0 4rem;
       }
       
-      .feature-card {
+      /* Social Links */
+      .social-links {
         background: rgba(20, 20, 30, 0.5);
         border-radius: 16px;
-        padding: 2rem;
-        transition: transform 0.3s, box-shadow 0.3s;
+        padding: 2.5rem;
         border: 1px solid rgba(147, 112, 219, 0.2);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        height: 100%;
       }
       
-      .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
-      }
-      
-      .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: #9370db;
-      }
-      
-      .feature-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+      .social-links h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
         background: linear-gradient(90deg, #ffffff, #9370db);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
       }
       
-      .feature-card p {
+      .social-links p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      
+      .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      
+      .social-icon {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        background: rgba(30, 30, 40, 0.5);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgba(147, 112, 219, 0.2);
+      }
+      
+      .social-icon:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(147, 112, 219, 0.2);
+        background: rgba(147, 112, 219, 0.1);
+      }
+      
+      .social-icon .icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      
+      .social-icon .linkedin {
+        background: linear-gradient(135deg, #0077b5, #00a0dc);
+      }
+      
+      .social-icon .instagram {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      }
+      
+      .social-icon .gmail {
+        background: linear-gradient(135deg, #d44638, #ea4335);
+      }
+      
+      .social-icon .info {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .social-icon .platform {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+      
+      .social-icon .username,
+      .social-icon .email {
         opacity: 0.8;
+        font-size: 0.9rem;
+      }
+      
+      /* Contact Form */
+      .contact-form {
+        background: rgba(20, 20, 30, 0.5);
+        border-radius: 16px;
+        padding: 2.5rem;
+        border: 1px solid rgba(147, 112, 219, 0.2);
+      }
+      
+      .contact-form h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .contact-form p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      
+      .form-group {
         margin-bottom: 1.5rem;
       }
       
-      .coming-soon {
-        background: rgba(147, 112, 219, 0.15);
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        font-size: 0.75rem;
-        color: #9370db;
-        margin-top: auto;
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+        background: rgba(30, 30, 40, 0.5);
+        border: 1px solid rgba(147, 112, 219, 0.2);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+      
+      .form-control:focus {
+        outline: none;
+        border-color: #9370db;
+        box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.3);
+      }
+      
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+      
+      .btn-send {
+        background: linear-gradient(90deg, #6600c5, #9370db);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 50px;
         font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        width: 100%;
+        font-size: 1rem;
+        box-shadow: 0 0 15px rgba(147, 112, 219, 0.4);
       }
       
-      /* Development Notice */
-      .dev-notice {
-        background: rgba(147, 112, 219, 0.1);
-        padding: 2rem;
-        border-radius: 16px;
-        text-align: center;
-        margin: 4rem 0;
-        border: 1px solid rgba(147, 112, 219, 0.3);
+      .btn-send:hover {
+        background: #8260ca;
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(147, 112, 219, 0.6);
       }
       
-      .dev-notice h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #9370db;
+      /* Alert message */
+      .alert {
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        display: none;
+      }
+      
+      .alert-success {
+        background-color: rgba(25, 135, 84, 0.2);
+        border: 1px solid rgba(25, 135, 84, 0.3);
+        color: #75b798;
+      }
+      
+      .alert-danger {
+        background-color: rgba(220, 53, 69, 0.2);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: #ea868f;
       }
       
       /* Background Effects */
@@ -274,42 +394,6 @@
         background: radial-gradient(circle, rgba(147, 112, 219, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
         filter: blur(60px);
         z-index: 1;
-      }
-      
-      /* CTA Section */
-      .cta-section {
-        text-align: center;
-        padding: 4rem 0;
-        max-width: 700px;
-        margin: 0 auto;
-      }
-      
-      .cta-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(90deg, #ffffff, #9370db);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      
-      .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      
-      .btn-getstarted {
-        background: transparent;
-        color: white;
-        border: 1px solid rgba(147, 112, 219, 0.5);
-      }
-      
-      .btn-getstarted:hover {
-        background: rgba(147, 112, 219, 0.1);
-        transform: translateY(-2px);
-        border-color: #9370db;
       }
       
       /* Login Modal Styles */
@@ -397,10 +481,6 @@
 
       /* Responsive Styles */
       @media (max-width: 1024px) {
-        .feature-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        
         h1 {
           font-size: 3.5rem;
         }
@@ -427,17 +507,9 @@
           font-size: 1.2rem;
         }
         
-        .feature-grid {
+        .contact-grid {
           grid-template-columns: 1fr;
-        }
-        
-        .cta-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .cta-section h2 {
-          font-size: 2rem;
+          gap: 2rem;
         }
       }
       
@@ -467,16 +539,27 @@
           font-size: 1rem;
         }
         
-        .feature-card {
+        .social-links,
+        .contact-form {
           padding: 1.5rem;
         }
         
-        .feature-icon {
-          font-size: 2rem;
+        .social-icon {
+          padding: 0.8rem;
         }
         
-        .feature-card h3 {
-          font-size: 1.3rem;
+        .social-icon .icon {
+          width: 30px;
+          height: 30px;
+        }
+        
+        .social-icon .platform {
+          font-size: 1rem;
+        }
+        
+        .social-icon .username,
+        .social-icon .email {
+          font-size: 0.8rem;
         }
         
         .modal-content {
@@ -487,13 +570,9 @@
         .modal-buttons {
           flex-direction: column;
         }
-        
-        .btn-signin, .btn-getstarted {
-          padding: 0.6rem 1.2rem;
-          font-size: 0.9rem;
-        }
       }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   </head>
   <body>
     <img class="grid" src="images/gradient.png" alt="Background gradient" />
@@ -512,77 +591,109 @@
           <a class="games-link navbartext" href="#">Games</a>
           <a class="navbartext" href="/features">Features</a>
           <a class="navbartext" href="/about">About</a>
-          <a class="navbartext" href="/contact">Contact</a>
+          <a class="navbartext active" href="/contact">Contact</a>
         </nav>
       </header>
 
       <main>
-        <section class="features-hero">
+        <section class="contact-hero">
           <div class="tagbox">
             <div class="tag">
-              Features <span class="purple-dot">⚡</span>
+              Get in Touch <span class="purple-dot">📞</span>
             </div>
           </div>
-          <h1>Learning Through Play</h1>
+          <h1>Connect With Us</h1>
           <p class="subtitle">
-            Discover how Play2learn transforms boring study sessions into engaging gaming experiences with our innovative learning platform.
+            Have questions, feedback, or ideas? We'd love to hear from you! Reach out through any of the channels below.
           </p>
         </section>
 
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Custom Topics</h3>
-            <p>Upload any topic of your choice and set the difficulty level that matches your learning needs. You're in control of what you learn.</p>
+        <div class="contact-grid">
+          <div class="social-links">
+            <h2>Connect Directly</h2>
+            <p>Feel free to reach out through any of these platforms. I'm always open to discussions about Play2learn, potential collaborations, or just chatting about game development and education.</p>
+            
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/in/varun-kushwah7/" target="_blank" class="social-icon">
+                <div class="icon linkedin">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </div>
+                <div class="info">
+                  <span class="platform">LinkedIn</span>
+                  <span class="username">Varun-Kushwah7</span>
+                </div>
+              </a>
+              
+              <a href="https://www.instagram.com/varun_.kushwah_/" target="_blank" class="social-icon">
+                <div class="icon instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div class="info">
+                  <span class="platform">Instagram</span>
+                  <span class="username">@varun_.kushwah_</span>
+                </div>
+              </a>
+              
+              <a href="mailto:varunkushwah500@gmail.com" class="social-icon">
+                <div class="icon gmail">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div class="info">
+                  <span class="platform">Email</span>
+                  <span class="email">varunkushwah500@gmail.com</span>
+                </div>
+              </a>
+            </div>
           </div>
           
-          <div class="feature-card">
-            <div class="feature-icon">🎮</div>
-            <h3>Game Selection</h3>
-            <p>Browse a growing library of games and choose the ones that match your learning style and preferences. More games are added regularly.</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3>AI-Generated Questions</h3>
-            <p>Progress through games by answering AI-generated questions relevant to your chosen topics, ensuring that learning is seamlessly integrated with gameplay.</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">📝</div>
-            <h3>Full Syllabus Support</h3>
-            <p>Upload your entire syllabus and have our system generate appropriate questions to help you master all of your course content.</p>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🛠️</div>
-            <h3>Developer API</h3>
-            <p>Create and upload your own games to the platform with our comprehensive documentation and developer tools.</p>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🧩</div>
-            <h3>Custom MCQs</h3>
-            <p>Create your own multiple-choice questions or let our AI generate them for you based on your study materials.</p>
-            <div class="coming-soon">Coming Soon</div>
+          <div class="contact-form">
+            <h2>Send a Message</h2>
+            <p>Have questions or suggestions about Play2learn? Fill out the form below and I'll get back to you as soon as possible.</p>
+            
+            <div id="alert-success" class="alert alert-success">
+              Your message has been sent successfully! I'll get back to you soon.
+            </div>
+            
+            <div id="alert-error" class="alert alert-danger">
+              Oops! Something went wrong. Please try again later.
+            </div>
+            
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-control" required></textarea>
+              </div>
+              
+              <button type="submit" class="btn-send">Send Message</button>
+            </form>
           </div>
         </div>
-        
-        <div class="dev-notice">
-          <h3>Under Development</h3>
-          <p>Play2learn is constantly evolving. Our team is working hard to make games more engaging and perfect the learning experience. Stay tuned for regular updates and new features!</p>
-        </div>
-        
-        <section class="cta-section">
-          <h2>Ready to transform your learning experience?</h2>
-          <p>Join Play2learn today and discover how fun studying can be when combined with gaming.</p>
-          <div class="cta-buttons">
-            <a href="#" class="btn-getstarted">Documentation</a>
-            <a href="#" class="btn-signin cta-signin">Get Started</a>
-          </div>
-        </section>
       </main>
     </div>
     
@@ -601,12 +712,64 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Initialize EmailJS
+        (function() {
+          emailjs.init("BDIl2qulIPdk8qprE"); // Replace with your EmailJS public key
+        })();
+        
         // DOM Elements
+        const contactForm = document.getElementById('contact-form');
+        const alertSuccess = document.getElementById('alert-success');
+        const alertError = document.getElementById('alert-error');
         const gamesLinks = document.querySelectorAll('.games-link');
         const loginRequiredModal = document.getElementById('login-required-modal');
         const closeModal = document.querySelector('.close');
         const closeModalBtn = document.querySelector('.close-modal');
         const allSigninBtns = document.querySelectorAll('.btn-signin');
+        
+        // Contact Form Submission
+        if (contactForm) {
+          contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Prepare template parameters
+            const templateParams = {
+              from_name: name,
+              from_email: email,
+              subject: subject,
+              message: message
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_ruo9iuh', 'template_3xcbpbj', templateParams)
+              .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                alertSuccess.style.display = 'block';
+                alertError.style.display = 'none';
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                  alertSuccess.style.display = 'none';
+                }, 5000);
+              }, function(error) {
+                console.log('FAILED...', error);
+                alertError.style.display = 'block';
+                alertSuccess.style.display = 'none';
+                
+                // Hide error message after 5 seconds
+                setTimeout(function() {
+                  alertError.style.display = 'none';
+                }, 5000);
+              });
+          });
+        }
         
         // Check if user is already logged in
         const currentUser = JSON.parse(localStorage.getItem("play2learn_current_user"));

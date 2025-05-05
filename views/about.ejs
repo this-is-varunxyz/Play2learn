@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Features - Play2learn</title>
+    <title>About - Play2learn</title>
     <style>
       /* Base Styles */
       * {
@@ -135,8 +135,8 @@
         box-shadow: 0 0 25px rgba(147, 112, 219, 0.6);
       }
       
-      /* Features Content Styles */
-      .features-hero {
+      /* About Content Styles */
+      .about-hero {
         padding: 4rem 0;
         text-align: center;
         max-width: 800px;
@@ -182,74 +182,117 @@
         margin-right: auto;
       }
       
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
-      }
-      
-      .feature-card {
-        background: rgba(20, 20, 30, 0.5);
-        border-radius: 16px;
-        padding: 2rem;
-        transition: transform 0.3s, box-shadow 0.3s;
-        border: 1px solid rgba(147, 112, 219, 0.2);
+      /* Profile Section */
+      .profile-section {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem 0 4rem;
+        padding: 2rem;
+        background: rgba(20, 20, 30, 0.5);
+        border-radius: 16px;
+        border: 1px solid rgba(147, 112, 219, 0.2);
+      }
+      
+      .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .profile-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #9370db;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
+      }
+      
+      .profile-photo img {
+        width: 100%;
         height: 100%;
+        object-fit: cover;
       }
       
-      .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
-      }
-      
-      .feature-icon {
+      .profile-content h2 {
         font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: #9370db;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #ffffff, #9370db);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
       }
       
-      .feature-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+      .profile-titles {
+        font-size: 1.2rem;
+        color: #9370db;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      
+      .profile-content p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        text-align: center;
+        opacity: 0.9;
+      }
+      
+      .linkedin-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(90deg, #0077b5, #00a0dc);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+      }
+      
+      .linkedin-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(0, 119, 181, 0.6);
+      }
+      
+      .linkedin-icon {
+        margin-right: 0.5rem;
+      }
+      
+      /* Story Section */
+      .story-section {
+        background: rgba(20, 20, 30, 0.5);
+        border-radius: 16px;
+        padding: 3rem;
+        margin: 4rem 0;
+        border: 1px solid rgba(147, 112, 219, 0.2);
+      }
+      
+      .story-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
         background: linear-gradient(90deg, #ffffff, #9370db);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
       }
       
-      .feature-card p {
-        opacity: 0.8;
+      .story-section p {
         margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        opacity: 0.9;
       }
       
-      .coming-soon {
-        background: rgba(147, 112, 219, 0.15);
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        font-size: 0.75rem;
+      .story-highlight {
         color: #9370db;
-        margin-top: auto;
-        font-weight: 600;
-      }
-      
-      /* Development Notice */
-      .dev-notice {
-        background: rgba(147, 112, 219, 0.1);
-        padding: 2rem;
-        border-radius: 16px;
-        text-align: center;
-        margin: 4rem 0;
-        border: 1px solid rgba(147, 112, 219, 0.3);
-      }
-      
-      .dev-notice h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #9370db;
+        font-weight: bold;
       }
       
       /* Background Effects */
@@ -397,12 +440,12 @@
 
       /* Responsive Styles */
       @media (max-width: 1024px) {
-        .feature-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        
         h1 {
           font-size: 3.5rem;
+        }
+        
+        .story-section {
+          padding: 2rem;
         }
       }
       
@@ -427,10 +470,6 @@
           font-size: 1.2rem;
         }
         
-        .feature-grid {
-          grid-template-columns: 1fr;
-        }
-        
         .cta-buttons {
           flex-direction: column;
           align-items: center;
@@ -438,6 +477,14 @@
         
         .cta-section h2 {
           font-size: 2rem;
+        }
+        
+        .profile-section {
+          padding: 1.5rem;
+        }
+        
+        .story-section {
+          padding: 1.5rem;
         }
       }
       
@@ -467,16 +514,13 @@
           font-size: 1rem;
         }
         
-        .feature-card {
-          padding: 1.5rem;
+        .profile-photo {
+          width: 150px;
+          height: 150px;
         }
         
-        .feature-icon {
+        .profile-content h2 {
           font-size: 2rem;
-        }
-        
-        .feature-card h3 {
-          font-size: 1.3rem;
         }
         
         .modal-content {
@@ -511,76 +555,69 @@
         <nav id="main-nav">
           <a class="games-link navbartext" href="#">Games</a>
           <a class="navbartext" href="/features">Features</a>
-          <a class="navbartext" href="/about">About</a>
+          <a class="navbartext active" href="/about">About</a>
           <a class="navbartext" href="/contact">Contact</a>
         </nav>
       </header>
 
       <main>
-        <section class="features-hero">
+        <section class="about-hero">
           <div class="tagbox">
             <div class="tag">
-              Features <span class="purple-dot">⚡</span>
+              About Us <span class="purple-dot">👋</span>
             </div>
           </div>
-          <h1>Learning Through Play</h1>
+          <h1>The Story Behind Play2learn</h1>
           <p class="subtitle">
-            Discover how Play2learn transforms boring study sessions into engaging gaming experiences with our innovative learning platform.
+            Turning gaming addiction into a powerful learning tool through innovative gameplay and educational integration.
           </p>
         </section>
 
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Custom Topics</h3>
-            <p>Upload any topic of your choice and set the difficulty level that matches your learning needs. You're in control of what you learn.</p>
+        <section class="profile-section">
+          <div class="profile-container">
+            <div class="profile-photo">
+              <img src="images/varun (2).jpg" style="object-fit: cover; object-position: center; "   alt="Varun Kushwah" />
+            </div>
+            <div class="profile-content"  >
+              <h2>Varun Kushwah</h2>
+              <p class="profile-titles">Game Developer | Web Developer | Graphic Designer</p>
+              <a style="margin-left: 6vw;"  href="https://www.linkedin.com/in/varun-kushwah7/" target="_blank" class="linkedin-link">
+                <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                Connect on LinkedIn
+              </a>
+            </div>
           </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🎮</div>
-            <h3>Game Selection</h3>
-            <p>Browse a growing library of games and choose the ones that match your learning style and preferences. More games are added regularly.</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3>AI-Generated Questions</h3>
-            <p>Progress through games by answering AI-generated questions relevant to your chosen topics, ensuring that learning is seamlessly integrated with gameplay.</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">📝</div>
-            <h3>Full Syllabus Support</h3>
-            <p>Upload your entire syllabus and have our system generate appropriate questions to help you master all of your course content.</p>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🛠️</div>
-            <h3>Developer API</h3>
-            <p>Create and upload your own games to the platform with our comprehensive documentation and developer tools.</p>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">🧩</div>
-            <h3>Custom MCQs</h3>
-            <p>Create your own multiple-choice questions or let our AI generate them for you based on your study materials.</p>
-            <div class="coming-soon">Coming Soon</div>
-          </div>
-        </div>
-        
-        <div class="dev-notice">
-          <h3>Under Development</h3>
-          <p>Play2learn is constantly evolving. Our team is working hard to make games more engaging and perfect the learning experience. Stay tuned for regular updates and new features!</p>
-        </div>
+        </section>
+
+        <section class="story-section">
+          <h2>My Journey</h2>
+          <p>
+            As someone who has always been <span class="story-highlight">passionate about gaming</span>, I recognized early on how games captivate our attention and motivate us to keep going. I found myself spending countless hours mastering games, learning their mechanics, and overcoming challenges—all while having fun.
+          </p>
+          <p>
+            This realization sparked a question: <span class="story-highlight">What if we could harness this same energy and motivation for education?</span> What if studying could be as engaging and rewarding as playing games?
+          </p>
+          <p>
+            With this idea in mind, I created Play2learn for a hackathon, where it won <span class="story-highlight">3rd place</span>. The concept was simple but powerful: integrate educational content into gaming experiences, allowing users to progress through games by answering questions related to topics they're studying.
+          </p>
+          <p>
+            After the initial success, I decided to continue developing the platform, building it from scratch to create a seamless experience where learning becomes a natural part of gameplay. The core functionality allows users to upload any topic they're studying, and our system generates relevant questions that appear during gaming sessions.
+          </p>
+          <p>
+            Play2learn is still in active development, with new features and games being added regularly. My vision is to create a platform where education doesn't feel like a chore but rather an exciting adventure that rewards both knowledge acquisition and gaming skills.
+          </p>
+        </section>
         
         <section class="cta-section">
-          <h2>Ready to transform your learning experience?</h2>
-          <p>Join Play2learn today and discover how fun studying can be when combined with gaming.</p>
+          <h2>Join the Learning Revolution</h2>
+          <p>Experience the fusion of gaming and education on Play2learn. Have feedback or suggestions? I'd love to hear from you!</p>
           <div class="cta-buttons">
-            <a href="#" class="btn-getstarted">Documentation</a>
-            <a href="#" class="btn-signin cta-signin">Get Started</a>
+            <a href="https://www.linkedin.com/in/varun-kushwah" target="_blank" class="btn-getstarted">Connect with Me</a>
+            <a href="#" class="btn-signin cta-signin">Try Play2learn</a>
           </div>
         </section>
       </main>

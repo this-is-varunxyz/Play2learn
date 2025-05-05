@@ -20,13 +20,6 @@ app.get("/",(req,res)=>{
 });
 
 
-app.post("/login", (req, res) => {
-    // Access the username from the request body
-   
-    
-    // Render the games view with the username
-    res.render("games");
-  });
 app.get("/games",async (req,res)=>{
    
     res.render("games");
@@ -34,7 +27,141 @@ app.get("/games",async (req,res)=>{
 app.get("/features",async (req,res)=>{
    
     res.render("feactures");
+
 });
+app.get("/about",(req,res)=>{
+    res.render("about");
+})
+app.get("/contact",(req,res)=>{
+    res.render("contact");
+})
+
+app.post("/hillclimb", async (req, res) => {
+    // try {
+    //     const csharpCode = await apicall("maths", "easy", "hillclimb");
+    //     res.setHeader('Content-Type', 'text/plain');
+    //     res.send(csharpCode);
+    // } catch (error) {
+    //     res.status(500).send("// API Error - Using fallback questions");
+    // }
+    answers = await apicall(req.body.topicName, req.body.difficulty, "hillclimb");
+    res.send(`<body>${answers}<script> setTimeout(function() {
+              window.location.href = "https://itch.io/hillclimb";
+            }, 3000);</script></body>`)
+});
+
+
+app.get("/aiquestions",(req,res)=>{
+res.send(`// Question 1
+AddQuestion(
+    "What is 5 + 3?",
+    "8",
+    new string[] {
+        "5",
+        "3",
+        "15"
+    }
+);
+
+// Question 2
+AddQuestion(
+    "What is 10 - 2?",
+    "8",
+    new string[] {
+        "12",
+        "5",
+        "20"
+    }
+);
+
+// Question 3
+AddQuestion(
+    "What is 2 * 4?",
+    "8",
+    new string[] {
+        "6",
+        "10",
+        "24"
+    }
+);
+
+// Question 4
+AddQuestion(
+    "What is 12 / 3?",
+    "4",
+    new string[] {
+        "3",
+        "15",
+        "36"
+    }
+);
+
+// Question 5
+AddQuestion(
+    "What is the next number in the sequence: 2, 4, 6, ...?",
+    "8",
+    new string[] {
+        "7",
+        "9",
+        "10"
+    }
+);
+
+// Question 6
+AddQuestion(
+    "How many sides does a triangle have?",
+    "3",
+    new string[] {
+        "2",
+        "4",
+        "5"
+    }
+);
+
+// Question 7
+AddQuestion(
+    "What is 10 / 5?",
+    "2",
+    new string[] {
+        "5",
+        "50",
+        "15"
+    }
+);
+
+// Question 8
+AddQuestion(
+    "What is 7 + 6?",
+    "13",
+    new string[] {
+        "1",
+        "12",
+        "42"
+    }
+);
+
+// Question 9
+AddQuestion(
+    "What is 9 - 4?",
+    "5",
+    new string[] {
+        "13",
+        "36",
+        "4"
+    }
+);
+
+// Question 10
+AddQuestion(
+    "What is 3 * 3?",
+    "9",
+    new string[] {
+        "6",
+        "1",
+        "33"
+    }
+);`)
+})
 
 
 app.post("/:gamename",async (req,res)=>{
@@ -44,6 +171,7 @@ app.post("/:gamename",async (req,res)=>{
         let questions = await apicall(topicName, difficulty);
         console.log("sending");
         console.log(questions)
+
         
         res.render(req.params.gamename,{ questions: JSON.stringify(questions)});
     } catch (error) {
@@ -54,15 +182,8 @@ app.post("/:gamename",async (req,res)=>{
 
 
 
-app.get("/aiquestions",async (req,res)=>{
-
-    let answer = await apicall("economics","easy","hillclimb");
-    console.log(answer);
-    res.send(answer)
 
 
-
-})
 
 
 async function apicall(topicName, difficulty, gameName = "") {
@@ -139,7 +260,8 @@ async function apicall(topicName, difficulty, gameName = "") {
         // Process response based on format
         if (gameName.toLowerCase() === "hillclimb") {
             // For Hill Climb, we return the code directly
-            return response.trim();
+             
+            return response.replace(/```csharp|```/g, "").trim();
         } else {
             // For regular format, we clean and parse JSON
             response = cleanJsonResponse(response);

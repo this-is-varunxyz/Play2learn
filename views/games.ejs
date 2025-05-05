@@ -861,17 +861,17 @@ text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
         
         <header style="margin-top: 1vw;" >
             
-            <div class="logo-container" onclick="window.location.href = '/'" >
+            <div class="logo-container" onclick="window.location.href = '/'"   >
               <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
-              <h1 class="logo"><span class="play2">Play2</span><span class="learn">learn</span></h1>
+              <h1 class="logo"  ><span class="play2" >Play2</span><span class="learn">learn</span></h1>
           </div>
             <nav>
               <a  class="navbartext" href="/games">Games</a>
-              <a  class="navbartext" href="#">Features</a>
-              <a class="navbartext" href="#">About</a>
-              <a class="navbartext"  href="#">Contact</a>
+              <a  class="navbartext" href="/features">Features</a>
+              <a class="navbartext" href="/about">About</a>
+              <a class="navbartext"  href="/contact">Contact</a>
             </nav>
           </header>
         <!-- <header>
@@ -898,25 +898,18 @@ text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
 
 
         <section class="hero">
-            <div class="weekly-update">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                </svg>
-                New games added weekly
-            </div>
+          
             <h2>Play Amazing Games</h2>
             <h3>Join the Community</h3>
             <p>Upload your syllabus, choose your game, and unlock progress by solving quizzes mid-game. Turn boring study sessions into thrilling adventures where learning becomes part of the gameplay.</p>
             <div class="hero-buttons">
-                <a href="#" class="primary-btn">Browse Games</a>
-                <a href="#" class="secondary-btn">Join Now</a>
+              
             </div>
         </section>
 
         <section class="featured-section">
             <div class="section-header">
                 <h2>Featured Games</h2>
-                <a href="#" class="view-all">View All</a>
             </div>
             <div class="featured-carousel">
                 <img src="images/hill.png" alt="Featured Game" class="featured-img">
@@ -945,26 +938,7 @@ text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
 
         <div class="section-header">
             <h2>All Games</h2>
-            <div class="view-options">
-                <div class="view-option active">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                    </svg>
-                </div>
-                <div class="view-option">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="8" y1="6" x2="21" y2="6"></line>
-                        <line x1="8" y1="12" x2="21" y2="12"></line>
-                        <line x1="8" y1="18" x2="21" y2="18"></line>
-                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                    </svg>
-                </div>
-            </div>
+           
         </div>
 
         <div class="games-grid">
@@ -1008,39 +982,27 @@ text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Games</a></li>
-                        <li><a href="#">Categories</a></li>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">New Releases</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Feedback</a></li>
+                        
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/contact">Help Center</a></li>
+                                     <li><a href="/contact">Feedback</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter to get updates on new games and features.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email" class="newsletter-input">
-                        <button type="submit" class="newsletter-btn">Join</button>
-                    </form>
-                </div>
+               
             </div>
             <div class="footer-bottom">
                 <div class="copyright">© 2025 Play2Learn. All rights reserved.</div>
-                <div class="footer-legal">
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookie Policy</a>
-                </div>
+               
             </div>
         </div>
     </footer>
