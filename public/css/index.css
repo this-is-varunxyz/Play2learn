@@ -403,6 +403,18 @@ width: 100%;
 .success {
   color: #00c896;
 }
+.watermark{
+    
+  width: 500px;
+  height: 80px;
+  z-index: 99999;
+background-color: #080808;
+position: absolute;
+bottom: 0;
+right: -30vw;
+
+
+}
 
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {

@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Play2learn - Learn Smarter, Play Harder</title>
     <link rel="stylesheet" href="css/index.css" />
-    
+    <style>#preloader {
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      z-index: 100;
+      background: black url(images/Loader.gif) no-repeat center center;
+      background-size: 15%; 
+    }</style>
   </head>
   <body>
+    <div id="preloader"></div>  
     <img class="grid" src="images/gradient.png" alt="Background gradient" />
     <div class="glow"></div>
     <div class="container">
@@ -63,10 +71,12 @@
           </div>
         </div>
       </main>
-      <spline-viewer
+
+      <spline-viewer 
         class="testing"
         url="https://prod.spline.design/vE9SphPcjZSnCKQy/scene.splinecode"
-      ></spline-viewer>
+           ></spline-viewer>
+           <div  class="watermark"  ></div>
     </div>
     <!-- HTML for the Auth Popups -->
     <div id="signup-modal" class="modal">
@@ -143,7 +153,13 @@
       //     console.error('Error validating email:', error);
       //     return { status: 'error' };
       //   }
+      const preloader = document.getElementById("preloader");
+
       // }
+
+      window.addEventListener("load", () => {
+        preloader.style.display = "none";
+      });
 
       // Enhanced password validation function - removed uppercase letter requirement
       function validatePassword(password) {
