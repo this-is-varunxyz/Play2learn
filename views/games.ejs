@@ -651,6 +651,14 @@
             outline: none;
             border-color: #9370db;
         }
+        #preloader {
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      z-index: 100;
+      background: black url(images/Loader.gif) no-repeat center center;
+      background-size: 15%; 
+    }
     
         .newsletter-btn {
             padding: 0.8rem 1.2rem;
@@ -870,6 +878,8 @@
     </style>
 </head>
 <body>
+    <div id="preloader"></div>  
+
     <img class="grid" src="images/gradient.png" alt="Background gradient" />
 
     <div class="glow"></div>
@@ -1042,6 +1052,15 @@
     </footer>
 
    <script type="module" >
+
+    //   }
+      const preloader = document.getElementById("preloader");
+
+      // }
+
+      window.addEventListener("load", () => {
+        preloader.style.display = "none";
+      });
     import {games} from "./gamesgrid/gamesgrid.js";
 import {popup} from "./gamesgrid/gamespopup.js";
 

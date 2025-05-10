@@ -36,6 +36,12 @@ app.get("/contact",(req,res)=>{
     res.render("contact");
 })
 
+app.post("/login",(req,res)=>{
+
+res.render("games");
+
+
+})
 app.post("/hillclimb", async (req, res) => {
     // try {
     //     const csharpCode = await apicall("maths", "easy", "hillclimb");
