@@ -196,7 +196,7 @@ async function apicall(topicName, difficulty, gameName = "") {
     try {
         // Create model instance with appropriate settings for text generation
         const textModel = genAI.getGenerativeModel({
-            model: "gemini-1.5-pro",
+            model: "gemini-2.0-flash",
             generationConfig: {
                 temperature: 0.7,
                 topP: 0.9,
